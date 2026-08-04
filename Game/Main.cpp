@@ -15,9 +15,39 @@
 using namespace nu;
 using namespace std;
 
+class Object {
+public:
+    Object() { cout << "constructor" << endl; }
+	~Object() { cout << "destructor" << endl; }
+    Object(const Object& other) { cout << "copy constructor" << endl; }
+	Object& operator = (const Object& object) { cout << "assignment" << endl; return *this; }
+};
+
 int main(int argc, char* argv[])
 
 {
+	cout << "+++++++++Object+++++++++" << endl;
+    {
+        Object objectA;
+        Object objectB(objectA);
+        Object objectC;
+        objectC = objectA;
+    }
+	cout << "+++++++++Shared Pointers+++++++++" << endl;
+    shared_ptr<Object> objectC;
+    {
+        auto objectA = make_shared<Object>();
+        cout << objectA.get() << endl;
+		cout << objectA.use_count() << endl;
+		auto objectB = objectA;
+        cout << objectB.get() << endl;
+        cout << objectB.use_count() << endl;
+        objectC = objectA;
+        cout << objectC.get() << endl;
+        cout << objectC.use_count() << endl;
+    }
+    cout << objectC.use_count() << endl;
+
     SetWorkingDirectory("Assets");
 
     //INITALIZE

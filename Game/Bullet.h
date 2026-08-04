@@ -11,9 +11,7 @@ public:
 		m_ammo = enemyDesc.ammo;
 		m_speed = enemyDesc.speed;
 	}
-	Bullet(float speed, const nu::Transform& transform) : Actor{ transform }, m_speed{ speed } {};
-	Bullet(float speed, const nu::Transform& transform, const Model& model) : Actor{ transform, model }, m_speed{ speed } {};
-
+	
 	void Update(float dt) override;
 
 	void SetSpeed(float speed) override {

@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
+#include <SDL3_Image/SDL_image.h>
 #include "Transform.h"
 #include "Mesh.h"
 #include "Model.h"
@@ -13,6 +14,8 @@ namespace nu {
 	class Renderer
 	{
 		friend class Text;
+		friend class Texture;
+
 	public:
 		void Initialize(int, int);
 		void Shutdown();
