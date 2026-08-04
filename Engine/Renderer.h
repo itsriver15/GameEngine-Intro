@@ -8,9 +8,6 @@
 using namespace nu;
 
 namespace nu {
-
-	
-
 	class Renderer
 	{
 		friend class Text;
@@ -32,7 +29,9 @@ namespace nu {
 		void DrawFillRect(float x, float y, float w, float h) const;
 		void DrawRect(float x, float y, float w, float h) const;
 
+
 		void DrawModel(const class Model& model, const struct Transform& transform) const;
+		void DrawTexture(Texture* texture, float x, float y);
 
 		int GetWidth() const { return m_width; }
 		int GetHeight() const { return m_height; }
@@ -44,6 +43,5 @@ namespace nu {
 
 		int m_width = 0;
 		int m_height = 0;
-
 	};
 }

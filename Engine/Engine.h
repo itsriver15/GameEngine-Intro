@@ -12,6 +12,7 @@
 #include "File.h"
 #include "Audio.h"
 #include "ParticleSystem.h"
+#include "Texture.h"
 
 #include "Text.h"
 

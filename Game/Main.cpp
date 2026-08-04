@@ -55,6 +55,9 @@ int main(int argc, char* argv[])
 
     SpaceGame game;
     game.Initialize();
+
+    std::shared_ptr<Texture> texture = std::make_shared<Texture>();
+    texture->Load("Textures/IAmPibble.jpg", Engine::Get().GetRenderer());
  
     //MAIN LOOP
     bool quit = false;
@@ -87,6 +90,7 @@ int main(int argc, char* argv[])
         Engine::Get().GetRenderer().Clear();
 
         game.Draw(Engine::Get().GetRenderer());
+		Engine::Get().GetRenderer().DrawTexture(texture.get(), 0.0f, 0.0f);
 
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
         Engine::Get().GetRenderer().Present();

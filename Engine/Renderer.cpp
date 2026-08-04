@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Renderer.h"
+#include "Texture.h"
 #include "Vector2.h"
 #include "Model.h"
 #include "MathUtils.h"
@@ -116,6 +117,20 @@ void Renderer::DrawModel (const class Model& model, const struct Transform& tran
 		}
 	}
 
+}
+
+void Renderer::DrawTexture(Texture* texture, float x, float y)
+{
+	Vector2 size = texture->GetSize();
+
+	SDL_FRect destRect;
+	destRect.x = x;
+	destRect.y = y;
+	destRect.w = size.x;
+	destRect.h = size.y;
+
+	// https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+	SDL_RenderTexture(renderer, texture->m_texture, NULL, &destRect);
 }
 
 
