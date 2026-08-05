@@ -1,25 +1,26 @@
 #pragma once
 #include "Vector2.h"
 #include <string>
+#include "Resource.h"
 
 
 struct SDL_Texture;
 
 namespace nu {
 
-	class Texture
-	{
+	class Texture : public Resource {
 	public:
 		Texture() = default;
 		~Texture();
 
 		bool Load(const std::string& filename, class Renderer& renderer);
 
-		Vector2 GetSize();
+		const Vector2& GetSize() const { return m_size; };
 
 		friend class Renderer;
 
 	private:
 		SDL_Texture* m_texture{ nullptr };
+		Vector2 m_size{ 0.0f, 0.0f };
 	};
 }

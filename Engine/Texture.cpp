@@ -33,14 +33,9 @@ using namespace nu;
             std::cerr << "Could not create texture: " << filename << std::endl;
             return false;
         }
+		//cache size of texture
+        SDL_GetTextureSize(m_texture, &m_size.x, &m_size.y);
 
         return true;
     }
 
-    Vector2 Texture::GetSize()
-    {
-        Vector2 v;
-        // https://wiki.libsdl.org/SDL3/SDL_GetTextureSize
-        SDL_GetTextureSize(m_texture, &v.x, &v.y);
-        return v;
-    }

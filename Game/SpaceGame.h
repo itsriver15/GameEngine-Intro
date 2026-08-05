@@ -1,6 +1,9 @@
 #pragma once
 #include "..\Engine\Game.h"
 #include "..\Engine\Text.h"
+#include "..\Engine\Resource.h"
+
+
 using namespace nu;
 
 
@@ -42,13 +45,17 @@ public:
 
 		GameState m_gameState = GameState::Title;
 
-		Font* m_titleFont{ nullptr };
+		nu::res_t<nu::Font> m_titleFont;
+		nu::res_t<nu::Font> m_gameFont;
+		nu::res_t<nu::Font> m_gameOverFont;
+
+		//Font* m_titleFont{ nullptr };
 		Text* m_titleText{ nullptr };
 
-		Font* m_gameOverFont{ nullptr };
+		//Font* m_gameOverFont{ nullptr };
 		Text* m_gameOverText{ nullptr };
 
-		Font* m_gameFont{ nullptr };
+		//Font* m_gameFont{ nullptr };
 
 		Text* m_scoreText{ nullptr };
 		Text* m_livesText{ nullptr };

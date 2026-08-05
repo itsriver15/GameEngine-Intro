@@ -31,7 +31,8 @@ namespace nu {
 
 
 		void DrawModel(const class Model& model, const struct Transform& transform) const;
-		void DrawTexture(Texture* texture, float x, float y);
+		void DrawTexture(const class Texture& texture, float x, float y);
+		void DrawTexture(const class Texture& texture, float x, float y, float angle, float scale = 1.0f, bool fliph = false);
 
 		int GetWidth() const { return m_width; }
 		int GetHeight() const { return m_height; }

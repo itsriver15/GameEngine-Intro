@@ -26,7 +26,7 @@
 #include <vector>
 
 namespace nu {
-	class Engine {
+	class Engine /*: public Singleton<Engine> */ {
 	public:
 		static Engine& Get() { static Engine engine; return engine; }
 
