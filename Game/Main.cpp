@@ -10,6 +10,7 @@
 #include <fmod.hpp>
 
 #include <iostream>
+#include <random>
 #include <vector>
 #include <map>
 
@@ -23,10 +24,46 @@ public:
     Object(const Object& other) { cout << "copy constructor" << endl; }
 	Object& operator = (const Object& object) { cout << "assignment" << endl; return *this; }
 };
+uint32_t seed = 1234;
+uint32_t RNG() {
+    seed = (seed * 1103515245) + 12345;
+    return seed;
+}
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[]) {
+    for (size_t i = 0; i < 10; i++) { cout << RNG() << " "; }
+    cout << endl;
 
-{
+    seed = 1234;
+    for (size_t i = 0; i < 10; i++) { cout << RNG() << " "; }
+    cout << endl;
+
+    //srand((unsigned int)time(NULL));
+    SeedRandom((unsigned int)time(NULL));
+    for (size_t i = 0; i < 10; i++) { cout << rand() << " "; }
+    cout << endl;
+
+    //<random>
+    random_device randomDevice;
+    cout << randomDevice.min() << endl;
+    cout << randomDevice.max() << endl;
+    cout << randomDevice.entropy() << endl;
+
+    mt19937 generator(randomDevice());
+    
+    uniform_int_distribution<> dist(0, 20);
+
+    for (size_t i = 0; i < 10; i++) { cout << dist(generator) << " "; }
+    cout << endl;
+
+    uniform_real_distribution<float> distReal(-10.0f, 20.0f);
+    for (size_t i = 0; i < 10; i++) { cout << distReal(generator) << " "; }
+    cout << endl;
+
+
+    return 0;
+
+
 	cout << "+++++++++Object+++++++++" << endl;
     {
         Object objectA;
