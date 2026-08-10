@@ -31,6 +31,7 @@ uint32_t RNG() {
 }
 
 int main(int argc, char* argv[]) {
+    /*
     for (size_t i = 0; i < 10; i++) { cout << RNG() << " "; }
     cout << endl;
 
@@ -85,6 +86,7 @@ int main(int argc, char* argv[]) {
         cout << objectC.use_count() << endl;
     }
     cout << objectC.use_count() << endl;
+    */
 
     SetWorkingDirectory("Assets");
 
@@ -128,7 +130,7 @@ int main(int argc, char* argv[]) {
         Engine::Get().GetRenderer().Clear();
 
         game.Draw(Engine::Get().GetRenderer());
-		Engine::Get().GetRenderer().DrawTexture(*Resources().Get<Texture>("Textures/ship.png", Engine::Get().GetRenderer()), 0.0f, 0.0f);
+		//Engine::Get().GetRenderer().DrawTexture(*Resources().Get<Texture>("Textures/ship.png", Engine::Get().GetRenderer()), 0.0f, 0.0f);
 
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
         Engine::Get().GetRenderer().Present();

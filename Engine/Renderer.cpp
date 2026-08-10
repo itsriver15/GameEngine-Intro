@@ -119,29 +119,17 @@ void Renderer::DrawModel (const class Model& model, const struct Transform& tran
 
 }
 
-void Renderer::DrawTexture(const class Texture& texture, float x, float y)
+void Renderer::DrawTexture(const class Texture& texture, float x, float y, float angle, float scale, bool fliph) const
 {
 	Vector2 size = texture.GetSize();
-
+	
 	SDL_FRect destRect;
-	destRect.x = x;
-	destRect.y = y;
-	destRect.w = size.x;
-	destRect.h = size.y;
+	destRect.w = size.x * scale;
+	destRect.h = size.y * scale;
 
-	// https://wiki.libsdl.org/SDL3/SDL_RenderTexture
-	SDL_RenderTexture(renderer, texture.m_texture, NULL, &destRect);
-}
+	destRect.x = x - (destRect.w * 0.5f);
+	destRect.y = y - (destRect.h * 0.5f);
 
-void Renderer::DrawTexture(const class Texture& texture, float x, float y, float angle, float scale, bool fliph)
-{
-	Vector2 size = texture.GetSize();
-
-	SDL_FRect destRect;
-	destRect.x = x;
-	destRect.y = y;
-	destRect.w = size.x;
-	destRect.h = size.y;
 
 	// https://wiki.libsdl.org/SDL3/SDL_RenderTexture
 	SDL_RenderTextureRotated(renderer, texture.m_texture, NULL, &destRect, angle, NULL, (fliph) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);

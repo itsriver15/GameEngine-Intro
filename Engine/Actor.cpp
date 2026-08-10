@@ -2,6 +2,7 @@
 #include "Actor.h"
 #include "MathUtils.h"
 #include "Random.h"
+#include "Texture.h"
 
 namespace nu {
     void Actor::Update(float dt) {
@@ -23,10 +24,18 @@ namespace nu {
         if (m_model) {
             renderer.DrawModel(*m_model, m_transform);
         }
+        else if (m_texture) {
+            renderer.DrawTexture(*m_texture, m_transform.position.x, m_transform.position.y, m_transform.rotation, m_transform.scale);
+        }
     }
 
     float Actor::GetRadius() const {
-
-        return m_model->GetRadius() * m_transform.scale * 0.9f;
+        if (m_model) {
+            return m_model->GetRadius() * m_transform.scale * 0.9f;
+        } else if (m_texture) {
+            return (m_texture->GetSize().Length() * 0.5f) * 0.5f;
+        } else {
+            return 0.0f;
+        }
     }
 };

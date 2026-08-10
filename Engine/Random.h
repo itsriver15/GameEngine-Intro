@@ -38,6 +38,7 @@ namespace nu {
 	/// <param name="max">Exclusive Max</param>
 	/// <returns>Returns random number between min and max</returns>
 	inline int RandomInt(int min, int max) {
+		if (min > max) std::swap(min, max);
 		std::uniform_int_distribution<> dist(min, max);
 
 		return dist(Generator());
@@ -66,8 +67,9 @@ namespace nu {
 	/// <param name="max">Exclusive Max</param>
 	/// <returns>Returns a Random Float between min and max</returns>
 	inline float RandomFloat(float min, float max) {
+		if (min > max) std::swap(min, max);
 		std::uniform_real_distribution<float> dist(min, max);
-
+		
 		return dist(Generator());
 	}
 

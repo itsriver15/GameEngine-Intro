@@ -1,12 +1,15 @@
 #include "../Engine/Engine.h"
+#include "../Engine/ResourceManager.h"
 #include "SpaceGame.h"
 #include "Bullet.h"
 #include "Assets.h"
 #include "Player.h"
 
+
 #include <memory>
 
 using namespace assets;
+using namespace nu;
 
 void Player::Update(float dt){
     float thrust = 0.0f;
@@ -42,8 +45,9 @@ void Player::Update(float dt){
         BulletDesc desc;
         desc.name = "PlayerBullet";
         desc.tag = "PlayerBullet";
-        desc.model = bulletModel;
-        desc.transform = Transform{ m_transform.position, m_transform.rotation, 5.0f };
+        //desc.model = bulletModel;
+        desc.texture = Resources().Get<Texture>("textures/bullet.png", Engine::Get().GetRenderer());
+        desc.transform = Transform{ m_transform.position, m_transform.rotation, 1.0f };
         desc.speed = 1000.0f;
         desc.lifespan = 3.0f;
 

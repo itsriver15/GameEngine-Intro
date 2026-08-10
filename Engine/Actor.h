@@ -3,10 +3,13 @@
 #include "Scene.h"
 #include "Renderer.h"
 #include "Model.h"
+#include "Resource.h"
 #include <string>
 #include <memory>
 
 namespace nu {
+    class Texture;
+
     class Scene;
 
     struct ActorDesc {
@@ -16,7 +19,9 @@ namespace nu {
         Vector2 velocity{ 0.0f,0.0f };
         float damping{ 0.0f };
         float lifespan{ 0 };
-        shared_ptr<Model> model;
+        res_t<Model> model;
+        res_t<Texture> texture;
+
     };
     class Actor {
     public:
@@ -29,6 +34,7 @@ namespace nu {
             m_damping = actorDesc.damping;
             m_lifespan = actorDesc.lifespan;
             m_model = actorDesc.model;
+            m_texture = actorDesc.texture;
         }
 
         virtual void Update(float dt);
@@ -79,7 +85,8 @@ namespace nu {
         float m_lifespan{ 0 };
         bool m_destroyed{ false };
     
-        shared_ptr<Model> m_model;
+        res_t<Model> m_model;
+        res_t<Texture> m_texture;
         Scene* m_scene = nullptr;
     };
 };
