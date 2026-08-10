@@ -13,91 +13,106 @@
 #include <random>
 #include <vector>
 #include <map>
+#include <fstream>
+
+
 
 using namespace nu;
 using namespace std;
 
-class Object {
-public:
-    Object() { cout << "constructor" << endl; }
-	~Object() { cout << "destructor" << endl; }
-    Object(const Object& other) { cout << "copy constructor" << endl; }
-	Object& operator = (const Object& object) { cout << "assignment" << endl; return *this; }
-};
-uint32_t seed = 1234;
-uint32_t RNG() {
-    seed = (seed * 1103515245) + 12345;
-    return seed;
-}
-
 int main(int argc, char* argv[]) {
-    /*
-    for (size_t i = 0; i < 10; i++) { cout << RNG() << " "; }
-    cout << endl;
 
-    seed = 1234;
-    for (size_t i = 0; i < 10; i++) { cout << RNG() << " "; }
-    cout << endl;
 
-    //srand((unsigned int)time(NULL));
-    SeedRandom((unsigned int)time(NULL));
-    for (size_t i = 0; i < 10; i++) { cout << rand() << " "; }
-    cout << endl;
+    SetWorkingDirectory("Assets");
 
-    //<random>
-    random_device randomDevice;
-    cout << randomDevice.min() << endl;
-    cout << randomDevice.max() << endl;
-    cout << randomDevice.entropy() << endl;
+    {
+        //read file - input file
+        ifstream file("Data/text.txt");
+        if (file.is_open()) {
+            string str;
 
-    mt19937 generator(randomDevice());
-    
-    uniform_int_distribution<> dist(0, 20);
+            while (std::getline(file, str)){
+                cout << str << endl;
+            }
+        }
+        else {
+            cout << "Could not load file" << endl;
+        }
+        file.close();
+    }
+  
 
-    for (size_t i = 0; i < 10; i++) { cout << dist(generator) << " "; }
-    cout << endl;
+    {
+        //write file -  output file
+        ofstream file("Data/text.txt", std::ios::app);
+        if (file.is_open()) {
+            file << "Now he has a scratch! \n";
 
-    uniform_real_distribution<float> distReal(-10.0f, 20.0f);
-    for (size_t i = 0; i < 10; i++) { cout << distReal(generator) << " "; }
-    cout << endl;
+        }
+    }
+
+    {
+        // read / write (input / output)
+        fstream file("Data/text.txt", ios::in | ios::out | std::ios::app);
+        if (file.is_open()) {
+            //input
+            file << "An added line across his cheek...\n";
+            //output
+            file.seekg(0);
+            std::string str;
+            while (std::getline(file, str)) {
+                cout << str << endl;
+            }
+
+        }
+
+    }
+
+    {
+        string name;
+        int score;
+        bool isAlive;
+
+        bool save = true;
+
+        if (save) {
+            name = "River A. Cantrell";
+            score = 1234;
+            isAlive = true;
+        }
+        //save game data
+        ofstream file("Data/game.txt", ios::trunc);
+        if (file.is_open()) {
+            file << name << "\n";
+            file << score << "\n";
+            file << std::boolalpha << isAlive << "\n";
+
+        }
+        //load game data
+        bool load = true;
+        if (load) {
+            ifstream file("Data/game.txt");
+            if (file.is_open()) {
+                file >> name;
+                file >> score;
+                file >> std::boolalpha >> isAlive;
+
+            }
+        }
+        //display game data
+        cout << name << endl;
+        cout << score << endl;
+        cout << boolalpha << isAlive << endl;
+    }
 
 
     return 0;
-
-
-	cout << "+++++++++Object+++++++++" << endl;
-    {
-        Object objectA;
-        Object objectB(objectA);
-        Object objectC;
-        objectC = objectA;
-    }
-	cout << "+++++++++Shared Pointers+++++++++" << endl;
-    shared_ptr<Object> objectC;
-    {
-        auto objectA = make_shared<Object>();
-        cout << objectA.get() << endl;
-		cout << objectA.use_count() << endl;
-		auto objectB = objectA;
-        cout << objectB.get() << endl;
-        cout << objectB.use_count() << endl;
-        objectC = objectA;
-        cout << objectC.get() << endl;
-        cout << objectC.use_count() << endl;
-    }
-    cout << objectC.use_count() << endl;
-    */
-
-    SetWorkingDirectory("Assets");
 
     //INITALIZE
     Engine::Get().Initialize();
 
     SpaceGame game;
     game.Initialize();
-
-    //std::shared_ptr<Texture> texture = std::make_shared<Texture>();
-    //texture->Load("Textures/ship.png", Engine::Get().GetRenderer());
  
     //MAIN LOOP
     bool quit = false;
@@ -130,7 +145,7 @@ int main(int argc, char* argv[]) {
         Engine::Get().GetRenderer().Clear();
 
         game.Draw(Engine::Get().GetRenderer());
-		//Engine::Get().GetRenderer().DrawTexture(*Resources().Get<Texture>("Textures/ship.png", Engine::Get().GetRenderer()), 0.0f, 0.0f);
+		
 
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
         Engine::Get().GetRenderer().Present();

@@ -45,7 +45,6 @@ void Player::Update(float dt){
         BulletDesc desc;
         desc.name = "PlayerBullet";
         desc.tag = "PlayerBullet";
-        //desc.model = bulletModel;
         desc.texture = Resources().Get<Texture>("textures/bullet.png", Engine::Get().GetRenderer());
         desc.transform = Transform{ m_transform.position, m_transform.rotation, 1.0f };
         desc.speed = 1000.0f;

@@ -13,23 +13,11 @@ bool SpaceGame::Initialize()
 	m_scene = new Scene();
 	m_scene->SetGame(this);
 
-	//m_titleFont = Resources().Get<Font>("8-bit-limit/8bitlim.ttf", 100);
-
-	//Resources().Get<Font>("8-bit-limit/8bitlim.ttf", 100);
-	//Resources().Get<Texture>("Textures/Title.png", Engine::Get().GetRenderer());
-
-	//m_titleFont->Load("8-bit-limit/8bitlim.ttf", 100);
-
 	m_titleText = new Text(Resources().GetWithID<Font>("title_font", "8-bit-limit/8bitlim.ttf", 100.0f));
 	m_titleText->Create(Engine::Get().GetRenderer(), "Shoot Em Space", Color{ 1.0f, 1.0f, 1.0f });
 
 	m_gameOverText = new Text(Resources().GetWithID<Font>("title_font", "8-bit-limit/8bitlim.ttf", 100.0f));
 	m_gameOverText->Create(Engine::Get().GetRenderer(), "Game Over", Color{ 1.0f, 0.0f, 0.0f });
-
-	//m_gameFont = std::make_shared<Font>();
-	// 
-	// 
-	//m_gameFont->Load("8-bit-limit/8bitlim.ttf", 50);
 
 	m_scoreText = new Text(Resources().GetWithID<Font>("game_font","8-bit-limit/8bitlim.ttf", 50.0f));
 	m_livesText = new Text(Resources().GetWithID<Font>("game_font", "8-bit-limit/8bitlim.ttf", 50.0f));
