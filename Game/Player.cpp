@@ -34,6 +34,7 @@ void Player::Update(float dt){
         particle.color = { 1.0f, 1.0f, 1.0f };
         particle.lifespan = RandomFloat(0.5f, 1.5f);
         particle.velocity = { RandomFloat(-200.0f, 200.0f), RandomFloat(-200.0f, 200.0f) };
+        particle.texture = Resources().Get<Texture>("textures/particle.png", Engine::Get().GetRenderer());
 
    
         Engine::Get().GetPS().AddParticle(particle);
@@ -65,8 +66,10 @@ void Player::OnCollision(Actor* other) {
     Color color2 = { 0.0f, 1.0f, 1.0f };
     Color color3 = { 1.0f, 0.0f, 1.0f };
 
+ 
 
     if (other->GetName() == "Enemy") {
+
         SetDestroyed();
         ((SpaceGame*)m_scene->GetGame())->OnPlayerDead();
 
@@ -91,6 +94,8 @@ void Player::OnCollision(Actor* other) {
             }
             particle.lifespan = nu::RandomFloat(0.5f, 2.0f);
             particle.velocity = { nu::RandomFloat(-600.0f, 600.0f), nu::RandomFloat(-600.0f, 600.0f) };
+
+            particle.texture = Resources().Get<Texture>("textures/particle.png", Engine::Get().GetRenderer());
 
             nu::Engine::Get().GetPS().AddParticle(particle);
         }

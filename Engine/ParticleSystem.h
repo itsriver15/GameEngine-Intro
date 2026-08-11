@@ -1,9 +1,11 @@
 #pragma once
 #include "Vector2.h"
 #include "Vector3.h"
-#include "Resource.h"
+#include "Texture.h"
+#include "ResourceManager.h"
 
 #include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -17,8 +19,9 @@ namespace nu {
 		Vector2 position{ 0, 0 };
 		Vector2 velocity{ 0, 0 };
 		Color color{ 0, 0, 0 };
-		//res_t<Texture> texture;
+		res_t<Texture> texture = nullptr;
 	};
+
 	class ParticleSystem {
 
 	public:

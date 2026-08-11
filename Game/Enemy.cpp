@@ -49,6 +49,7 @@ void Enemy::OnCollision(Actor* other) {
 			particle.color = { 1.0f, 0.0f, 0.0f };
 			particle.lifespan = nu::RandomFloat(0.5f, 2.0f);
 			particle.velocity = { nu::RandomFloat(-600.0f, 600.0f), nu::RandomFloat(-600.0f, 600.0f) };
+			particle.texture = Resources().Get<Texture>("textures/particle.png", Engine::Get().GetRenderer());
 
 			nu::Engine::Get().GetPS().AddParticle(particle);
 		}
