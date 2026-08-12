@@ -68,7 +68,6 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    return 0;
  
     //MAIN LOOP
     bool quit = false;
