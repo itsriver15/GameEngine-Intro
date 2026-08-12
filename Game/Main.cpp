@@ -25,9 +25,30 @@ int main() {
     SetWorkingDirectory("Assets");
 
     Factory::Instance().Register<Actor>("Actor");
-    auto actor = Factory::Instance().Create("Actor");
+    Factory::Instance().Register<Object>("Object");
+    Factory::Instance().Register<Player>("Player");
 
+    auto actor = Factory::Instance().Create<Actor>("Actor");
     cout << actor->IsActive() << endl;
+
+    auto object = Factory::Instance().Create("Object");
+    cout << object->IsActive() << endl;
+
+    auto player = Factory::Instance().Create<Player>("Player");
+    cout << player->IsActive() << endl;
+
+
+    json::document_t document;
+    if (json::Load("Data/scene.json", document)) {
+        player->Read(document);
+        cout << player->GetName() << endl;
+        cout << player->GetTag() << endl;
+        cout << player->GetTransform().rotation << endl;
+        cout << player->GetSpeed() << endl;
+        cout << player->IsActive() << endl;
+
+    }
+
     return 0;
 
     //INITALIZE

@@ -29,7 +29,6 @@ namespace nu {
     public:
         Actor() = default;
         Actor(const ActorDesc& actorDesc) {
-            m_name = actorDesc.name;
             m_tag = actorDesc.tag;
             m_transform = actorDesc.transform;
             m_velocity = actorDesc.velocity;
@@ -69,16 +68,16 @@ namespace nu {
             return m_destroyed;
         }
        
-
+        virtual void Read(const json::value_t& value) override;
 
 
         friend Scene;
 
     protected:
-        std::string m_name;
+
         std::string m_tag;
 
-        Transform m_transform;
+        Transform m_transform = { {0.0f,0.0f}, 0.0f, 0.0f };
         Vector2 m_velocity{ 0.0f, 0.0f };
         float m_damping{ 0.0f };
         float m_lifespan{ 0 };

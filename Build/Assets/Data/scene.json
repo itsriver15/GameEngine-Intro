@@ -1,0 +1,13 @@
+{
+  "name": "River Cantrell",
+  "tag": "Student",
+  "active": true,
+  "speed": 100,
+  "lifespan": 0.0,
+  "transform": {
+    "position": [ 2.4, 5.6 ],
+    "rotation": 0.1,
+    "scale": 2.0
+  },
+  "damping": 3.0
+}

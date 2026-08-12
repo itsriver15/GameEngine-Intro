@@ -57,21 +57,6 @@ void SpaceGame::Update(float dt)
 			SpawnEnemy();
 			
 		}
-
-		if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_F)) {
-			m_scene->GetActorByName("Player")->SetPosition(Vector2{ RandomFloat(0,1280), RandomFloat(0,1090) });
-		} 
-		//if (Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_LSHIFT))
-		//{
-		//	m_scene->GetActorByName("Player")->SetSpeed(6000.0f);
-		//}
-		//else if (Engine::Get().GetInput().GetKeyReleased(SDL_SCANCODE_LSHIFT))
-		//{
-		//	m_scene->GetActorByName("Player")->SetSpeed(2000.0f);// original speed
-		//}
-		if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_R)){
-			m_scene->GetActorByName("Player")->SetRotation(m_scene->GetActorByName("Player")->GetTransform().rotation + 180.0f);
-		}
 		break;
 	case GameState::GameOver:
 		m_scene->RemoveAllActors();

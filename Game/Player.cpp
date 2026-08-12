@@ -54,11 +54,24 @@ void Player::Update(float dt){
         unique_ptr<Bullet> bullet = make_unique<Bullet>(desc);
         m_scene->AddActor(move(bullet));
     };
+    //movement
+    if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_F)) {
+        m_scene->GetActorByName("Player")->SetPosition(Vector2{ RandomFloat(0,1280), RandomFloat(0,1090) });
+    }
+    if (Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_LSHIFT))
+    {
+       SetSpeed(6000.0f);
+    }
+    else if (Engine::Get().GetInput().GetKeyReleased(SDL_SCANCODE_LSHIFT))
+    {
+       SetSpeed(2000.0f);// original speed
+    }
+    if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_R)) {
+       m_scene->GetActorByName("Player")->SetRotation(m_scene->GetActorByName("Player")->GetTransform().rotation + 180.0f);
+    }
 
     Actor::Update(dt);
 }
-
-
 
 void Player::OnCollision(Actor* other) {
 
@@ -101,4 +114,12 @@ void Player::OnCollision(Actor* other) {
         }
     }
     
+}
+
+void Player::Read(const json::value_t& value)
+{
+    Actor::Read(value);
+
+    JSON_READ_NAME(value, "speed", m_speed);
+
 }

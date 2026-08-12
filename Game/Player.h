@@ -29,6 +29,8 @@ public:
 
 	void OnCollision(Actor* other) override;
 
+	virtual void Read(const json::value_t& value) override;
+
 
 private:
 	int m_ammo = 0;
