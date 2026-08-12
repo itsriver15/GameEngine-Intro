@@ -30,6 +30,45 @@ int main(int argc, char* argv[]) {
 
     SpaceGame game;
     game.Initialize();
+    // load the json data from a file
+    string buffer;
+    if (ReadTextFile("data/data.json", buffer))
+    {
+        // show the contents of the json file (debug)
+        cout << buffer << endl;
+
+        // create json document from the json file contents
+        rapidjson::Document document;
+
+        if (json::Load("data/data.json", document))
+        {
+            // read/show the data from the json file
+            string name;
+            int age;
+            float speed;
+            bool isAwake;
+            Vector2 position;
+            Vector3 color;
+
+            // read the json data
+            JSON_READ(document, name);
+            JSON_READ(document, age);
+            JSON_READ(document, speed);
+            JSON_READ(document, isAwake);
+            JSON_READ(document, position);
+            JSON_READ(document, color);
+
+            // show the data
+            cout << "Name: " << name << endl;
+            cout << "Age: " << age << endl;
+            cout << "Speed: " << speed << endl;
+            cout << "Awake? " << isAwake << endl;
+            cout << "Position: " << position.x << ", " << position.y << endl;
+            cout << "Color: (" << color.r << ", " << color.g << ", " << color.b << ")" << endl;
+        }
+    }
+
+    return 0;
  
     //MAIN LOOP
     bool quit = false;
