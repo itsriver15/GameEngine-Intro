@@ -20,10 +20,15 @@
 using namespace nu;
 using namespace std;
 
-int main(int argc, char* argv[]) {
-
+int main() {
 
     SetWorkingDirectory("Assets");
+
+    Factory::Instance().Register<Actor>("Actor");
+    auto actor = Factory::Instance().Create("Actor");
+
+    cout << actor->IsActive() << endl;
+    return 0;
 
     //INITALIZE
     Engine::Get().Initialize();

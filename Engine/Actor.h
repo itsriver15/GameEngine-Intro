@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "Model.h"
 #include "Resource.h"
+#include "Object.h"
 #include <string>
 #include <memory>
 
@@ -23,7 +24,8 @@ namespace nu {
         res_t<Texture> texture;
 
     };
-    class Actor {
+
+    class Actor : public Object {
     public:
         Actor() = default;
         Actor(const ActorDesc& actorDesc) {
@@ -66,9 +68,6 @@ namespace nu {
         bool GetDestroyed() const {
             return m_destroyed;
         }
-
-        virtual void SetSpeed(float speed) = 0;
-        virtual float GetSpeed() const = 0;
        
 
 

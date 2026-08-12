@@ -14,6 +14,9 @@
 #include "ParticleSystem.h"
 #include "Texture.h"
 #include "Json.h"
+#include "StringUtils.h"
+#include "Object.h"
+#include "Factory.h"
 
 #include "Text.h"
 

@@ -13,11 +13,11 @@ public:
 	}
 
 	void Update(float dt) override;
-	void SetSpeed(float speed) override {
+	void SetSpeed(float speed) {
 		m_speed = speed;
 	}
 
-	float GetSpeed() const override {
+	float GetSpeed() const {
 		return m_speed;
 	}
 
