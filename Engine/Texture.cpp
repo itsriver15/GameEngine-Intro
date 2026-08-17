@@ -31,6 +31,7 @@ using namespace nu;
         if (m_texture == nullptr)
         {
             std::cerr << "Could not create texture: " << filename << std::endl;
+            std::cerr << "SDL Error: " << SDL_GetError() << std::endl;
             return false;
         }
 		//cache size of texture

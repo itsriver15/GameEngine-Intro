@@ -42,21 +42,17 @@ void Player::Update(float dt){
 
     //fire
     if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
-        Engine::Get().GetAudio().PlaySound("laser");
-        BulletDesc desc;
-        desc.name = "PlayerBullet";
-        desc.tag = "PlayerBullet";
-        desc.texture = Resources().Get<Texture>("textures/bullet.png", Engine::Get().GetRenderer());
-        desc.transform = Transform{ m_transform.position, m_transform.rotation, 1.0f };
-        desc.speed = 1000.0f;
-        desc.lifespan = 3.0f;
+        auto actor = Factory::Instance().Create<Actor>("BulletPrototype");
+        actor->SetPosition(m_transform.position);
+        actor->SetRotation(m_transform.rotation);
+        actor->SetScale(1.0f);
 
-        unique_ptr<Bullet> bullet = make_unique<Bullet>(desc);
-        m_scene->AddActor(move(bullet));
+        m_scene->AddActor(move(actor));
     };
     //movement
-    if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_F)) {
-        m_scene->GetActorByName("Player")->SetPosition(Vector2{ RandomFloat(0,1280), RandomFloat(0,1090) });
+    if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_F))
+    {
+        SetPosition(Vector2{RandomFloat(0.0f, 1280.0f),RandomFloat(0.0f, 1024.0f)});
     }
     if (Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_LSHIFT))
     {
@@ -66,8 +62,9 @@ void Player::Update(float dt){
     {
        SetSpeed(2000.0f);// original speed
     }
-    if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_R)) {
-       m_scene->GetActorByName("Player")->SetRotation(m_scene->GetActorByName("Player")->GetTransform().rotation + 180.0f);
+    if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_R))
+    {
+        SetRotation(m_transform.rotation + 180.0f);
     }
 
     Actor::Update(dt);
@@ -81,7 +78,7 @@ void Player::OnCollision(Actor* other) {
 
  
 
-    if (other->GetName() == "Enemy") {
+    if (other->GetTag() == "Enemy") {
 
         SetDestroyed();
         ((SpaceGame*)m_scene->GetGame())->OnPlayerDead();

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Scene.h"
 #include "Actor.h"
+#include "Factory.h"
 #include "Renderer.h"
 
 namespace nu {
@@ -13,6 +14,39 @@ namespace nu {
 	void Scene::RemoveAllActors()
 	{
 		m_actors.clear();
+	}
+
+	bool Scene::Load(const std::string& sceneName)
+	{
+		json::document_t document;
+		if (json::Load(sceneName, document))
+		{
+			if (JSON_HAS_NAME(document, "actors")) {
+				for (auto& actorValue : document["actors"].GetArray()) {
+					std::string typeName;
+					JSON_READ_NAME(actorValue, "type", typeName);
+
+					auto actor = Factory::Instance().Create<Actor>(typeName);
+					actor->Read(actorValue);
+
+					bool prototype = false;
+					JSON_READ(actorValue, prototype);
+
+					if (prototype) {
+						std::string name;
+						JSON_READ(actorValue, name);
+
+						Factory::Instance().RegisterPrototype<Actor>(name, std::move(actor));
+					}
+					else {
+						AddActor(std::move(actor));
+					}
+				}
+		
+			}
+			
+		}
+		return false;
 	}
 
 	void Scene::Update(float dt) {

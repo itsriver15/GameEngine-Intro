@@ -4,7 +4,7 @@
 #include "../Engine/Engine.h" 
 
 void Enemy::Update(float dt) {
-	Player* player = m_scene->GetActorByName<Player>("Player");
+	Player* player = m_scene->GetActorByName<Player>("PlayerPrototype");
 	if (player) {
 		Vector2 direction = player->GetTransform().position - m_transform.position;
 		float rotation = direction.Angle();
@@ -30,7 +30,7 @@ void Enemy::Update(float dt) {
 
 void Enemy::OnCollision(Actor* other) {
 
-	if (other->GetTag() == "PlayerBullet") {
+	if (other->GetTag() == "Bullet") {
 		SetDestroyed();
 		other->SetDestroyed();
 		cout << "Destroyed" << endl;
@@ -59,6 +59,9 @@ void Enemy::OnCollision(Actor* other) {
 void Enemy::Read(const json::value_t& value)
 {
 	Actor::Read(value);
+
 	JSON_READ_NAME(value, "speed", m_speed);
+	JSON_READ_NAME(value, "points", m_points);
+	JSON_READ_NAME(value, "health", m_health);
 
 }

@@ -17,6 +17,7 @@
 #include "StringUtils.h"
 #include "Object.h"
 #include "Factory.h"
+#include "ResourceManager.h"
 
 #include "Text.h"
 
