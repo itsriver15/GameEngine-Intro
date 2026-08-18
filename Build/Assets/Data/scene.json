@@ -8,12 +8,17 @@
       "active": true,
       "speed": 2000,
       "damping": 3.0,
-      "texture": "textures/ship.png",
       "transform": {
         "position": [ 640.0, 512.0 ],
         "rotation": 0.0,
         "scale": 1.0
-      }
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "textures/ship.png"
+        }
+      ]
     },
     {
       "name": "EnemyPrototype",

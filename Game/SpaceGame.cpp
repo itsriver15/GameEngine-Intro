@@ -1,6 +1,6 @@
 #include "SpaceGame.h"
-#include "../Engine/Engine.h"
-#include "../Engine/ResourceManager.h"
+#include "Engine.h"
+#include "ResourceManager.h"
 #include "Player.h"
 #include "Assets.h"
 #include "Enemy.h"

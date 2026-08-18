@@ -1,5 +1,5 @@
-#include "../Engine/Engine.h"
-#include "../Engine/ResourceManager.h"
+#include "Engine.h"
+#include "ResourceManager.h"
 #include "SpaceGame.h"
 #include "Bullet.h"
 #include "Assets.h"
@@ -10,6 +10,8 @@
 
 using namespace assets;
 using namespace nu;
+
+FACTORY_REGISTER(Player)
 
 void Player::Update(float dt){
     float thrust = 0.0f;

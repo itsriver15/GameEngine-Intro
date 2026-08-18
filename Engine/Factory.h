@@ -7,6 +7,9 @@
 #include "Singleton.h"
 #include "StringUtils.h"
 
+#define FACTORY_REGISTER(classname) class Register##classname { public: Register##classname() { nu::Factory::Instance().Register<classname>(#classname); } }; static Register##classname registerInstance;
+
+
 namespace nu
 {
     class ICreator
@@ -21,7 +24,7 @@ namespace nu
     class Creator : public ICreator
     {
     public:
-        std::unique_ptr<Object> Create() override { return make_unique<T>(); }
+        std::unique_ptr<Object> Create() override { return std::make_unique<T>(); }
     };
 
     template <typename T>
@@ -71,6 +74,9 @@ namespace nu
             std::cerr << "Object [" << lowerName << "] already registered" << std::endl;
             return;
         }
+
+        std::cout << "Object registered: " << name << std::endl;
+
         m_registry[lowerName] = std::make_unique<Creator<T>>();
     }
 

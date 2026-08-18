@@ -27,6 +27,13 @@ namespace nu {
 					JSON_READ_NAME(actorValue, "type", typeName);
 
 					auto actor = Factory::Instance().Create<Actor>(typeName);
+
+
+					if (!actor) {
+						std::cout << "Could not create actor: " << typeName << std::endl;
+						continue;
+					}
+
 					actor->Read(actorValue);
 
 					bool prototype = false;

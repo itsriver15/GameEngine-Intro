@@ -1,7 +1,9 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "SpaceGame.h"
-#include "../Engine/Engine.h" 
+#include "Engine.h" 
+
+FACTORY_REGISTER(Enemy)
 
 void Enemy::Update(float dt) {
 	Player* player = m_scene->GetActorByName<Player>("PlayerPrototype");

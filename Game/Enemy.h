@@ -1,5 +1,5 @@
 #pragma once
-#include "../Engine/Actor.h"
+#include "Actor.h"
 struct EnemyDesc : public nu::ActorDesc {
 	int points = 0;
 	float health = 0;
