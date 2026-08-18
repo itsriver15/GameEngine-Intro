@@ -3,6 +3,8 @@
 #include "Actor.h"
 #include "Factory.h"
 #include "Renderer.h"
+#include "Components/CircleColliderComponent.h"
+
 
 namespace nu {
 	void Scene::AddActor(unique_ptr<Actor> actor){
@@ -88,9 +90,14 @@ namespace nu {
 				if (actorA == actorB || actorA->m_destroyed || actorB->m_destroyed) {
 					continue;
 				}
-				float distance = (actorA->m_transform.position - actorB->m_transform.position).Length();
 
-				if (distance <= (actorA->GetRadius() + actorB->GetRadius())) {
+				auto colliderA = actorA->GetComponent<ColliderComponent>();
+				auto colliderB = actorB->GetComponent<ColliderComponent>();
+
+				if (!(colliderA && colliderB)) {
+					continue;
+				}
+				if (colliderA->CheckCollision(*colliderB)) {
 					actorA->OnCollision(actorB.get());
 					actorB->OnCollision(actorA.get());
 				}

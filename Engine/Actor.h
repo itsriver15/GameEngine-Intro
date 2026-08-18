@@ -8,7 +8,8 @@
 #include "Factory.h"
 #include <string>
 #include <memory>
-#include "Framework/Component.h"
+#include "Components/ColliderComponent.h"
+#include "Components/Component.h"
 
 namespace nu {
     class Texture;
@@ -37,8 +38,10 @@ namespace nu {
             m_damping = actorDesc.damping;
             m_lifespan = actorDesc.lifespan;
         }
+        Actor(const Actor& other);
 
         CLASS_PROTOTYPE(Actor)
+
 
         virtual void Update(float dt);
         virtual void Draw(const Renderer& renderer) const;
@@ -46,6 +49,14 @@ namespace nu {
         virtual void OnCollision(Actor* other) {}
 
         const Transform& GetTransform() const { return m_transform; }
+        void SetTransform(const Transform transform) {
+            m_transform = transform;
+        }
+        void SetTransform(const Vector2& position, float rotation, float scale) {
+            SetPosition(position);
+            SetRotation(rotation);
+            SetScale(scale);
+        }
         void SetPosition(const Vector2& position) { m_transform.position = position; }
         void SetRotation(float rotation) { m_transform.rotation = rotation; }
         void SetScale(float scale) { m_transform.scale = scale; }
@@ -56,6 +67,7 @@ namespace nu {
 
         const std::string& GetName() const { return m_name; }
         const std::string& GetTag() const { return m_tag; };
+        void SetTag(std::string& tag) { m_tag = tag; }
 
         Scene* GetScene() const { return m_scene; }
 
@@ -72,6 +84,11 @@ namespace nu {
        
         virtual void Read(const json::value_t& value) override;
 
+        void AddComponent(std::unique_ptr<Component> component);
+
+        template<std::derived_from<Component> T>  
+        T* GetComponent();
+
 
         friend Scene;
 
@@ -85,8 +102,22 @@ namespace nu {
         float m_lifespan{ 0 };
         bool m_destroyed{ false };
 
-        std::vector<Component*> m_components;
+        std::vector<std::unique_ptr<Component>> m_components;
 
         Scene* m_scene = nullptr;
     };
+
+    template<std::derived_from<Component> T>
+    T* Actor::GetComponent()
+    {
+        for (auto& component : m_components) {
+            if (auto result = dynamic_cast<T*>(component.get())) {
+                return result;
+            }
+        }
+        return nullptr;
+    }
+
+   
 };
+

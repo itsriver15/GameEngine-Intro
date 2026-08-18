@@ -120,6 +120,10 @@ namespace nu {
             return (float)pow(x, 2) + (float)pow(y, 2);
         }
 
+        float Distance(const Vector2& v) const {
+            return (v - *this).Length();
+        }
+
         Vector2 Normalized() const {
             return *this / Length();
         }

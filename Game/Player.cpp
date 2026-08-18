@@ -45,9 +45,11 @@ void Player::Update(float dt){
     //fire
     if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
         auto actor = Factory::Instance().Create<Actor>("BulletPrototype");
-        actor->SetPosition(m_transform.position);
+        Transform transform{ {m_transform.position}, m_transform.rotation, 1.0f };
+       /* actor->SetPosition(m_transform.position);
         actor->SetRotation(m_transform.rotation);
-        actor->SetScale(1.0f);
+        actor->SetScale(1.0f);*/
+        actor->SetTransform(transform);
 
         m_scene->AddActor(move(actor));
     };

@@ -21,9 +21,13 @@
 using namespace nu;
 using namespace std;
 
+
+
 int main() {
 
     SetWorkingDirectory("Assets");
+
+
 
     //INITALIZE
     Engine::Get().Initialize();

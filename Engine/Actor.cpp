@@ -3,9 +3,12 @@
 #include "MathUtils.h"
 #include "Random.h"
 #include "Texture.h"
+#include <memory>
 #include "Engine.h"
 #include "ResourceManager.h"
 #include "Components/RendererComponent.h"
+#include "Components/ColliderComponent.h"
+
 
 
 
@@ -13,14 +16,28 @@ namespace nu {
 
     FACTORY_REGISTER(Actor)
 
-        void Actor::Update(float dt) {
+    Actor::Actor(const Actor& other) : 
+        Object{other}, m_tag{ other.m_tag },
+        m_transform{ other.m_transform },
+        m_velocity{ other.m_velocity },
+        m_damping{ other.m_damping },
+        m_lifespan{ other.m_lifespan }
+    {
+        //clone all components
+        for (const auto& component : other.m_components) {
+            auto clone = std::unique_ptr<Component>(dynamic_cast<Component*>(component->Clone().release()));
+            AddComponent(move(clone));
+       }
+    }
+
+    void Actor::Update(float dt) {
         //lifespan
         if (m_lifespan > 0.0f) {
             m_lifespan -= dt;
             m_destroyed = (m_lifespan <= 0.0f);
         }
 
-        for (auto component : m_components) {
+        for (auto& component : m_components) {
             component->Update(dt);
 
         }
@@ -35,8 +52,8 @@ namespace nu {
 
     void Actor::Draw(const Renderer& renderer) const {
 
-        for (auto component : m_components) {
-            auto rendererCompenent = dynamic_cast<RendererComponent*>(component);
+        for (auto& component : m_components) {
+            auto rendererCompenent = dynamic_cast<RendererComponent*>(component.get());
             if (rendererCompenent) {
                 rendererCompenent->Draw(renderer);
             }
@@ -71,15 +88,24 @@ namespace nu {
                 JSON_READ_NAME(componentValue, "type", typeName);
 
                 //create component of type
-                auto component = Factory::Instance().Create<Actor>(typeName);
+                auto component = Factory::Instance().Create<Component>(typeName);
 
                 if (component) {
                     component->Read(componentValue);
+                    AddComponent(std::move(component));
                     //m_components.push_back(component);
                 }
+                
             }
         }
 
         
     }
+    void Actor::AddComponent(std::unique_ptr<Component> component)
+    {
+        component->SetOwner(this);
+        m_components.push_back(std::move(component));
+    }
+
+
 }
