@@ -207,41 +207,5 @@ void SpaceGame::SpawnEnemy()
     auto actor = Factory::Instance().Create<Actor>("EnemyPrototype");
     actor->SetPosition({ nu::RandomFloat(1024.0f), nu::RandomFloat(1280.0f) });
     m_scene->AddActor(move(actor));
-    /*
-    //EnemyDesc enemyDesc;
 
-    //enemyDesc.name = "Enemy";
-    //enemyDesc.tag = "Enemy";
-
-    //enemyDesc.texture =
-    //    Resources().Get<Texture>(
-    //        "textures/enemy.png",
-    //        Engine::Get().GetRenderer());
-
-    //enemyDesc.transform =
-    //    Transform
-    //{
-    //    Vector2
-    //    {
-    //        RandomFloat(
-    //            0.0f,
-    //            static_cast<float>(
-    //                Engine::Get().GetRenderer().GetWidth())),
-
-    //        RandomFloat(
-    //            0.0f,
-    //            static_cast<float>(
-    //                Engine::Get().GetRenderer().GetHeight()))
-    //    },
-    //    90.0f,
-    //    2.0f
-    //};
-
-    //enemyDesc.damping = 3.0f;
-    //enemyDesc.speed = 2000.0f;
-
-    //unique_ptr<Enemy> enemy = make_unique<Enemy>(enemyDesc);
-
-    //m_scene->AddActor(move(enemy));
-    */
 }

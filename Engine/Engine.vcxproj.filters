@@ -28,6 +28,9 @@
     <Filter Include="Header Files\Framework">
       <UniqueIdentifier>{bf667483-8162-4fe9-aa4e-bd0580e2142b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{b0be2014-439c-4050-910c-97a361bef725}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -132,6 +135,9 @@
     <ClInclude Include="Components\CircleColliderComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -193,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="Components\SpriteRendererComponent.cpp">
       <Filter>Header Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Header Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
