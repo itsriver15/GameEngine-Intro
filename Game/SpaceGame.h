@@ -1,7 +1,7 @@
 #pragma once
-#include "..\Engine\Game.h"
-#include "..\Engine\Text.h"
-#include "..\Engine\Resource.h"
+#include "../Engine/Framework/Game.h"
+#include "../Engine/Renderer/Text.h"
+#include "../Engine/Resources/Resource.h"
 
 
 using namespace nu;

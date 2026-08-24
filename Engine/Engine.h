@@ -1,32 +1,48 @@
 #pragma once
 
-#include "Random.h"
-#include "Vector2.h"
-#include "MathUtils.h"
-#include "Transform.h"
 
-//systems
-#include "Renderer.h"
-#include "Input.h"
-#include "GameTime.h"
-#include "File.h"
-#include "Audio.h"
-#include "ParticleSystem.h"
-#include "Texture.h"
-#include "Json.h"
-#include "StringUtils.h"
-#include "Object.h"
-#include "Factory.h"
-#include "ResourceManager.h"
-#include "Physics.h"
+#include "../Engine/Core/Random.h"
 
-#include "Text.h"
+//math
+#include "../Engine/Math/Vector2.h"
+#include "../Engine/Math/MathUtils.h"
+#include "../Engine/Math/Transform.h"
+
+//renderer
+#include "../Engine/Renderer/Renderer.h"
+#include "../Engine/Renderer/Mesh.h"
+#include "../Engine/Renderer/Text.h"
+#include "../Engine/Renderer/ParticleSystem.h"
+#include "../Engine/Renderer/Texture.h"
+
+//input
+#include "../Engine/Input/Input.h"
+
+//core
+#include "../Engine/Core/GameTime.h"
+#include "../Engine/Core/File.h"
+#include "../Engine/Core/Factory.h"
+#include "../Engine/Core/StringUtils.h"
+
+//audio
+#include "../Engine/Audio/Audio.h"
+
+//serialization
+#include "../Engine/Serialization/Json.h"
 
 //framework
-#include "Actor.h"
-#include "Mesh.h"
-#include "Scene.h"
-#include "Game.h"
+#include "../Engine/Framework/Object.h"
+
+//resources
+#include "../Engine/Resources/ResourceManager.h"
+
+//physics
+#include "../Engine/Physics/Physics.h"
+
+//framework
+#include "../Engine/Framework/Actor.h"
+#include "../Engine/Framework/Scene.h"
+#include "../Engine/Framework/Game.h"
 
 #include <iostream>
 #include <vector>

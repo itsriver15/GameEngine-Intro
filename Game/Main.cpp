@@ -1,21 +1,13 @@
-#include "Engine.h"
-#include "ResourceManager.h"
+#include "../Engine/Engine.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Assets.h"
+
 #include "SpaceGame.h"
-#include "Bullet.h"
-
-#include <SDL3/SDL.h>
-
-#include <fmod.hpp>
 
 #include <iostream>
 #include <random>
 #include <vector>
-#include <map>
-#include <fstream>
-
 
 
 using namespace nu;
