@@ -11,8 +11,8 @@
           640,
           512
         ],
-        "rotation": 0,
-        "scale": 20
+        "rotation": 20,
+        "scale": 4
       },
       "components": [
         {

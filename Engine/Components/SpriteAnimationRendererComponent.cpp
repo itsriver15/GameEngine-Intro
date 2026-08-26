@@ -42,14 +42,15 @@ namespace nu {
 		}
 
 		auto transform = GetOwner()->GetTransform();
-		
 
-		renderer.DrawTexture(*m_textureFrames->GetTexture(), 
+		renderer.DrawTexture(
+			*m_textureFrames->GetTexture(),
 			m_textureFrames->GetFrameRect(m_currentFrame),
-			transform.position.x, 
+			transform.position.x,
 			transform.position.y,
-			transform.scale);
-		
+			transform.rotation,
+			transform.scale
+		);
 	}
 
 	void SpriteAnimationRendererComponent::Read(const json::value_t& value)
