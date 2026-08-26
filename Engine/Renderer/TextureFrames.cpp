@@ -24,6 +24,7 @@ namespace nu {
 			std::cerr << "Could not load Texture Frames Texture: " << texture_name << std::endl;
 			return false;
 		}
+
 		JSON_READ_NAME(document, "columns", m_numColumns);
 		JSON_READ_NAME(document, "rows", m_numRows);
 		JSON_READ_NAME(document, "start_frame", m_startFrame);
@@ -35,13 +36,29 @@ namespace nu {
 		}
 
 		Vector2 textureSize = m_texture->GetSize();
-		m_frameSize = textureSize / Vector2{ (float)m_numColumns, (float)m_numRows };
+		m_frameSize = textureSize / Vector2{m_numColumns, m_numRows };
 
+		return true;
 
+	}
 
+	Rect TextureFrames::GetFrameRect(unsigned int frame) {
 
+		if (frame >= m_totalFrames) {
+			std::cerr << "Texture Frames frame: " << frame << " out of bounds.";
+			frame = 0;
+		}
 
-		return false;
+		int currentFrame = m_startFrame + frame;
 
+		int column = currentFrame % m_numColumns;
+		int row = currentFrame / m_numColumns;
+
+		float x = column * m_frameSize.x;
+		float y = row * m_frameSize.y;
+
+		return Rect{
+			x, y, m_frameSize.x, m_frameSize.y
+		};
 	}
 }

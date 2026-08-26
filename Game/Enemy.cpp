@@ -2,27 +2,24 @@
 #include "Player.h"
 #include "SpaceGame.h"
 #include "Engine.h" 
+#include "Components/PhysicsComponent.h"
 
 FACTORY_REGISTER(Enemy)
 
 void Enemy::Update(float dt) {
 	Player* player = m_scene->GetActorByName<Player>("PlayerPrototype");
 	if (player) {
-		Vector2 direction = player->GetTransform().position - m_transform.position;
-		float rotation = direction.Angle();
+		auto physicsComponent = GetComponent<nu::PhysicsComponent>();
+		if (physicsComponent) {
+			Vector2 forward{ 1.0f, 0.0f };
+			Vector2 force = forward.Rotate(m_transform.rotation * DegToRad) * m_speed;
 
-		m_transform.rotation = rotation * RadToDeg;
+			physicsComponent->ApplyForce(force);
 
-		Vector2 forward{ 1,0 };
-		forward = forward.Rotate(m_transform.rotation * DegToRad);
-		AddVelocity(forward * m_speed * dt);
-
-		float thrust = 0.0f;
-		float rotate = 0.0f;
-
-		forward = { 1.0f, 0.0f };
-		Vector2 velocitiy = forward.Rotate(m_transform.rotation * DegToRad) * thrust;
-		AddVelocity(velocitiy * dt);
+			Vector2 direction = player->GetTransform().position - m_transform.position;
+			float rotation = direction.Angle();
+			physicsComponent->SetRotation(rotation * DegToRad);
+		}
 
 		Actor::Update(dt);
 

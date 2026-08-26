@@ -4,8 +4,8 @@
 #include "../Math/Vector2.h"
 #include "../Renderer/Model.h"
 #include "../Math/MathUtils.h"
-#include <iostream>
-#include <string>
+#include "../Math/Rect.h"
+
 using namespace nu;
 
 void Renderer::Initialize(int width, int height)
@@ -137,6 +137,24 @@ void Renderer::DrawTexture(const class Texture& texture, float x, float y, float
 
 void nu::Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool fliph) const
 {
+	SDL_FRect sourceRect;
+	sourceRect.x = source.x;
+	sourceRect.y = source.y;
+	sourceRect.w = source.w;
+	sourceRect.h = source.h;
+
+	SDL_FRect destRect;
+	destRect.w = source.w * scale;
+	destRect.h = source.h * scale;
+
+	destRect.x = x - (destRect.w * 0.5f);
+	destRect.y = y - (destRect.h * 0.5f);
+
+
+	// https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+	SDL_RenderTextureRotated(renderer, texture.m_texture, &sourceRect, &destRect, angle, NULL, (fliph) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
+
+
 
 }
 

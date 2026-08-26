@@ -3,6 +3,8 @@
 
 namespace nu
 {
+	float Physics::m_pixelsPerUnit = 48.0f;
+
 	bool Physics::Initialize()
 	{
 		b2WorldDef worldDef = b2DefaultWorldDef();

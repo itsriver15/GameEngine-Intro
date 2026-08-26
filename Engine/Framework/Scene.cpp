@@ -48,6 +48,9 @@ namespace nu {
 						Factory::Instance().RegisterPrototype<Actor>(name, std::move(actor));
 					}
 					else {
+						std::string name;
+						JSON_READ(actorValue, name);
+						cout << "Adding Actor: " << name << endl;
 						AddActor(std::move(actor));
 					}
 				}
@@ -72,6 +75,7 @@ namespace nu {
 
 		//add pending actors
 		for (auto& actor : m_pendingActors) {
+			actor->Start();
 			m_actors.push_back(std::move(actor));
 		}
 

@@ -46,6 +46,9 @@ namespace nu {
         virtual void Update(float dt);
         virtual void Draw(const Renderer& renderer) const;
 
+        virtual void Start() const;
+        virtual void Destroyed() const;
+
         virtual void OnCollision(Actor* other) {}
 
         const Transform& GetTransform() const { return m_transform; }

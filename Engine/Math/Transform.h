@@ -11,7 +11,7 @@ namespace nu {
         void Read(const json::value_t& value) {
             JSON_READ_NAME(value, "position", position);
             JSON_READ_NAME(value, "rotation", rotation);
-            JSON_READ_NAME(value,"scale", scale);
+            JSON_READ_NAME(value, "scale", scale);
         }
 
     };

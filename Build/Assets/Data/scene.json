@@ -1,17 +1,43 @@
 {
   "actors": [
     {
+      "type": "Actor",
+      "name": "Bat",
+      "tag": "Enemy",
+      "active": true,
+      "prototype": false,
+      "transform": {
+        "position": [
+          640,
+          512
+        ],
+        "rotation": 0,
+        "scale": 20
+      },
+      "components": [
+        {
+          "type": "SpriteAnimationRendererComponent",
+          "texture_frames": "Animations/bat_idle.json",
+          "frames_per_second": 10,
+          "loop": true
+        }
+      ]
+    },
+    {
       "name": "PlayerPrototype",
       "type": "Player",
       "tag": "Player",
       "prototype": true,
       "active": true,
       "speed": 2000,
-      "damping": 3.0,
+      "damping": 3,
       "transform": {
-        "position": [ 640.0, 512.0 ],
-        "rotation": 0.0,
-        "scale": 1.0
+        "position": [
+          640,
+          512
+        ],
+        "rotation": 0,
+        "scale": 1
       },
       "components": [
         {
@@ -21,6 +47,13 @@
         {
           "type": "CircleColliderComponent",
           "radius": 64
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 0.7,
+          "angular_damping": 2,
+          "size": [ 48, 48 ],
+          "gravity_scale":  0
         }
       ]
     },
@@ -30,12 +63,15 @@
       "tag": "Enemy",
       "prototype": true,
       "active": true,
-      "speed": 1500.0,
+      "speed": 1500,
       "health": 100,
       "damping": 3,
       "transform": {
-        "position": [ 640.0, 512.0 ],
-        "rotation": 0.0,
+        "position": [
+          640,
+          512
+        ],
+        "rotation": 0,
         "scale": 2
       },
       "components": [
@@ -46,6 +82,13 @@
         {
           "type": "CircleColliderComponent",
           "radius": 64
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 0.7,
+          "angular_damping": 2,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0
         }
       ]
     },
@@ -55,12 +98,15 @@
       "tag": "Bullet",
       "prototype": true,
       "active": true,
-      "speed": 1000.0,
-      "lifespan": 3.0,
+      "speed": 1000,
+      "lifespan": 3,
       "transform": {
-        "position": [ 640.0, 512.0 ],
-        "rotation": 0.0,
-        "scale": 1.0
+        "position": [
+          640,
+          512
+        ],
+        "rotation": 0,
+        "scale": 1
       },
       "components": [
         {
@@ -70,9 +116,15 @@
         {
           "type": "CircleColliderComponent",
           "radius": 64
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "linear_damping": 0.7,
+          "angular_damping": 2,
+          "size": [ 48, 48 ],
+          "gravity_scale": 0
         }
       ]
     }
-
   ]
 }

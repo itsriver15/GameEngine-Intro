@@ -35,6 +35,7 @@ namespace nu {
 		void DrawTexture(const class Texture& texture, float x, float y, float angle = 0.0f, float scale = 1.0f, bool fliph = false) const;
 		void DrawTexture(const class Texture& texture, const struct Rect& source, float x, float y, float angle = 0.0f, float scale = 1.0f, bool fliph = false) const;
 
+
 		int GetWidth() const { return m_width; }
 		int GetHeight() const { return m_height; }
 

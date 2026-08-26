@@ -61,6 +61,23 @@ namespace nu {
          }
     }
 
+    void Actor::Start() const
+    {
+        for (auto& component : m_components) {
+            component->Start();
+        }
+    }
+
+    void Actor::Destroyed() const
+    {
+        for (auto& component : m_components) {
+            component->Destroyed();
+        }
+
+    }
+
+
+
     float Actor::GetRadius() const {
             return 0.0f;
     }

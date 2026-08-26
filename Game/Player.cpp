@@ -4,6 +4,7 @@
 #include "Bullet.h"
 #include "Assets.h"
 #include "Player.h"
+#include "Components/PhysicsComponent.h"
 
 
 #include <memory>
@@ -24,12 +25,30 @@ void Player::Update(float dt){
 
     SetRotation(m_transform.rotation + rotate * dt);
 
+    auto physicsComponent = GetComponent<nu::PhysicsComponent>();
+    if (physicsComponent) {
+        Vector2 forward{ 1.0f, 0.0f };
+        Vector2 force = forward.Rotate(m_transform.rotation * DegToRad) * thrust;
+
+        physicsComponent->ApplyForce(force);
+        physicsComponent->ApplyTorque(rotate);
+
+        Vector2 position = physicsComponent->GetPosition();
+
+        position.x = Wrap(0.0f, 1280.0f, position.x);
+        position.y = Wrap(0.0f, 1024.0f, position.y);
+
+        physicsComponent->SetPosition(position);
+    }
+
+
+
     nu::Vector2 forward{ 1.0f,0.0f };
     nu::Vector2 velocity = forward.Rotate((DegToRad * m_transform.rotation)) * thrust;
 
     AddVelocity(velocity * dt);
  
-        //particle system
+     //particle system
     if (Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_W)) {
         nu::Particle particle;
         particle.position = m_transform.position;
@@ -46,13 +65,11 @@ void Player::Update(float dt){
     if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
         auto actor = Factory::Instance().Create<Actor>("BulletPrototype");
         Transform transform{ {m_transform.position}, m_transform.rotation, 1.0f };
-       /* actor->SetPosition(m_transform.position);
-        actor->SetRotation(m_transform.rotation);
-        actor->SetScale(1.0f);*/
         actor->SetTransform(transform);
 
         m_scene->AddActor(move(actor));
     };
+
     //movement
     if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_F))
     {
@@ -75,6 +92,7 @@ void Player::Update(float dt){
 }
 
 void Player::OnCollision(Actor* other) {
+    return;
 
     Color color1 = { 1.0f, 1.0f, 1.0f };
     Color color2 = { 0.0f, 1.0f, 1.0f };

@@ -7,6 +7,8 @@ namespace nu {
 
 	class Component : public Object {
 	public:
+		CLASS_PROTOTYPE(Component)
+
 		Component() = default;
 		~Component() = default;
 
