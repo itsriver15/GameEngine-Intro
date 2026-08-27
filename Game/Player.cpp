@@ -77,11 +77,11 @@ void Player::Update(float dt){
     }
     if (Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_LSHIFT))
     {
-       SetSpeed(6000.0f);
+       SetSpeed(3000.0f);
     }
     else if (Engine::Get().GetInput().GetKeyReleased(SDL_SCANCODE_LSHIFT))
     {
-       SetSpeed(2000.0f);// original speed
+       SetSpeed(1000.0f);// original speed
     }
     if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_R))
     {
@@ -92,7 +92,6 @@ void Player::Update(float dt){
 }
 
 void Player::OnCollision(Actor* other) {
-    return;
 
     Color color1 = { 1.0f, 1.0f, 1.0f };
     Color color2 = { 0.0f, 1.0f, 1.0f };

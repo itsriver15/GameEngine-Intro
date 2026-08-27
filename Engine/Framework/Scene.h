@@ -14,7 +14,7 @@ namespace nu {
 	public:
 
 		void AddActor(unique_ptr<Actor> actor);
-		void RemoveAllActors();
+		void RemoveAllActors(bool force = false);
 
 		bool Load(const std::string& sceneName);
 

@@ -244,4 +244,36 @@ namespace nu::json {
 
         return true;
     }
+
+
+    bool Read(const value_t& value, const std::string& name, vector<int> data, bool required)
+    {
+        if (!value.HasMember(name.c_str()))
+        {
+            if (required)
+            {
+                std::cerr << "Could not read JSON value (vector<int>): "
+                    << name << std::endl;
+                return false;
+            }
+
+            return true;
+        }
+
+        auto& array = value[name.c_str()];
+
+        for (rapidjson::SizeType i = 0; i < array.Size(); i++)
+        {
+            if (!array[i].IsNumber())
+            {
+                std::cerr << "Could not read JSON value (vector<int>): "
+                    << name << std::endl;
+                return false;
+            }
+
+            data.push_back(array[i].GetInt());
+        }
+
+        return true;
+    }
 }

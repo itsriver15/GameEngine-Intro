@@ -13,11 +13,14 @@ namespace nu {
 
 	}
 
-	void Scene::RemoveAllActors()
+	void Scene::RemoveAllActors(bool force)
 	{
-		m_actors.clear();
+		if (force) {
+			m_actors.clear();
+		} else {
+			erase_if(m_actors, [](auto& actor) { return !actor->GetPersistent();});
+		}
 	}
-
 	bool Scene::Load(const std::string& sceneName)
 	{
 		json::document_t document;
@@ -67,7 +70,7 @@ namespace nu {
 			actor->Update(dt);
 		}
 		//update collisions
-		UpdateCollisions();
+		//UpdateCollisions();
 
 		//remove destroyed actors
 		erase_if(m_actors, [](auto& actor) {return actor->m_destroyed; });

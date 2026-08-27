@@ -26,6 +26,8 @@ namespace nu
 
 		void Update(float dt);
 
+		void ProcessCollisionEvents();
+
 		friend class PhysicsBody;
 	public:
 		static float m_pixelsPerUnit;

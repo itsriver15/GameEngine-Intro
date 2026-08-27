@@ -89,6 +89,8 @@ namespace nu {
 
         void AddComponent(std::unique_ptr<Component> component);
 
+        bool GetPersistent() const { return m_persistent; }
+
         template<std::derived_from<Component> T>  
         T* GetComponent();
 
@@ -104,6 +106,7 @@ namespace nu {
         float m_damping{ 0.0f };
         float m_lifespan{ 0 };
         bool m_destroyed{ false };
+        bool m_persistent{ false };
 
         std::vector<std::unique_ptr<Component>> m_components;
 
