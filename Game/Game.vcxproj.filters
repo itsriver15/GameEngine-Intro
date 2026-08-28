@@ -25,42 +25,58 @@
     <Filter Include="Assets\Tilemaps">
       <UniqueIdentifier>{1a05068b-d42e-4f50-a988-f8bb0d290f90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SpaceGame">
+      <UniqueIdentifier>{713b016d-350e-481f-8812-0ff272ef9f2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceGame\Headers">
+      <UniqueIdentifier>{04164fa3-f61f-43b0-b921-69107ea9a641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpaceGame\Sources">
+      <UniqueIdentifier>{208f2888-1b6d-49b5-ba40-ed4b852f6238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpriteGame">
+      <UniqueIdentifier>{accbfab8-4bd8-4a01-b0e8-18f73cdc1e73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SpaceGame\SpaceGame.cpp">
+      <Filter>SpaceGame\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SpaceGame\Bullet.cpp">
+      <Filter>SpaceGame\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="SpaceGame\Enemy.cpp">
+      <Filter>SpaceGame\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceGame\Player.cpp">
+      <Filter>SpaceGame\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Assets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpaceGame.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SpriteGame\SpriteGame.cpp">
+      <Filter>SpriteGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SpaceGame\Enemy.h">
+      <Filter>SpaceGame\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceGame\Player.h">
+      <Filter>SpaceGame\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceGame\SpaceGame.h">
+      <Filter>SpaceGame\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceGame\Bullet.h">
+      <Filter>SpaceGame</Filter>
     </ClInclude>
     <ClInclude Include="Assets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpaceGame.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SpriteGame\SpriteGame.h">
+      <Filter>SpriteGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

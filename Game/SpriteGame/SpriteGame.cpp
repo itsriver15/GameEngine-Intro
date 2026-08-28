@@ -1,9 +1,6 @@
-#include "SpaceGame.h"
+#include "SpriteGame.h"
 #include "Engine.h"
-#include "../Engine/Resources/ResourceManager.h"
-#include "Player.h"
-#include "Assets.h"
-#include "Enemy.h"
+#include "Resources/ResourceManager.h"
 
 #include <SDL3/SDL.h>
 
@@ -13,7 +10,7 @@
 using namespace std;
 using namespace nu;
 
-bool SpaceGame::Initialize()
+bool SpriteGame::Initialize()
 {
     if (!Game::Initialize())
     {
@@ -68,7 +65,7 @@ bool SpaceGame::Initialize()
     return true;
 }
 
-void SpaceGame::Update(float dt)
+void SpriteGame::Update(float dt)
 {
     switch (m_gameState)
     {
@@ -124,7 +121,7 @@ void SpaceGame::Update(float dt)
     Game::Update(dt);
 }
 
-void SpaceGame::Draw(Renderer& renderer)
+void SpriteGame::Draw(Renderer& renderer)
 {
     renderer.DrawTexture(
         *Resources().Get<Texture>(
@@ -180,7 +177,7 @@ void SpaceGame::Draw(Renderer& renderer)
     Game::Draw(renderer);
 }
 
-void SpaceGame::OnPlayerDead()
+void SpriteGame::OnPlayerDead()
 {
     Engine::Get().GetAudio().PlaySound("explosion");
 
@@ -196,13 +193,13 @@ void SpaceGame::OnPlayerDead()
     }
 }
 
-void SpaceGame::SpawnPlayer()
+void SpriteGame::SpawnPlayer()
 {
         auto actor = Factory::Instance().Create<Actor>("PlayerPrototype");
         m_scene->AddActor(move(actor));
 }
 
-void SpaceGame::SpawnEnemy()
+void SpriteGame::SpawnEnemy()
 {
     auto actor = Factory::Instance().Create<Actor>("EnemyPrototype");
     actor->SetPosition({ nu::RandomFloat(1024.0f), nu::RandomFloat(1280.0f) });
