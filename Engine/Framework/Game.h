@@ -8,7 +8,7 @@ namespace nu {
 
     class Game {
     public:
-        Game() = default;
+        Game();
         Game(unique_ptr<Scene> scene);
         virtual ~Game();
 

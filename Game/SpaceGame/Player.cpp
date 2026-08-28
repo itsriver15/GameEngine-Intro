@@ -2,14 +2,12 @@
 #include "../Engine/Resources/ResourceManager.h"
 #include "SpaceGame.h"
 #include "Bullet.h"
-#include "Assets.h"
 #include "Player.h"
 #include "Components/PhysicsComponent.h"
 
 
 #include <memory>
 
-using namespace assets;
 using namespace nu;
 
 FACTORY_REGISTER(Player)

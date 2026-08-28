@@ -18,7 +18,7 @@ public:
 	};
 public:
 		SpaceGame() = default;
-		SpaceGame(nu::Scene* scene) : nu::Game{ scene } {};
+		SpaceGame(unique_ptr<Scene> scene) : nu::Game{ std::move(scene) }{ };
 		bool Initialize() override;
 
 		void Update(float dt) override;

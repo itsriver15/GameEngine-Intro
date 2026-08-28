@@ -18,7 +18,7 @@ public:
 	};
 public:
 		SpriteGame() = default;
-		SpriteGame(nu::Scene* scene) : nu::Game{ scene } {};
+		SpriteGame(unique_ptr<Scene> scene) : nu::Game{ std::move(scene)} {};
 		bool Initialize() override;
 
 		void Update(float dt) override;
