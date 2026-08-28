@@ -3,6 +3,7 @@
 #include "../Math/Vector3.h"
 #include <rapidjson/document.h>
 #include <string>
+#include <vector>
 
 #define JSON_READ_NAME(value, name, data) json::Read(value, name, data)
 #define JSON_READ(value, data) json::Read(value, #data, data)
@@ -32,7 +33,7 @@ namespace nu::json
 	bool Read(const value_t& value, const std::string& name, std::string& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, Vector2& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, Vector3& data, bool required = false);
-	bool Read(const value_t& value, const std::string& name, std::vector<int> data, bool required = false);
+	bool Read(const value_t& value, const std::string& name, std::vector<int>& data, bool required = false);
 
 
 }

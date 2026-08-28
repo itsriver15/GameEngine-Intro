@@ -246,7 +246,7 @@ namespace nu::json {
     }
 
 
-    bool Read(const value_t& value, const std::string& name, vector<int> data, bool required)
+    bool Read(const value_t& value, const std::string& name, vector<int>& data, bool required)
     {
         if (!value.HasMember(name.c_str()))
         {

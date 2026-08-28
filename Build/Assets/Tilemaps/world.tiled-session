@@ -1,5 +1,5 @@
 {
-    "activeFile": "world.tmj",
+    "activeFile": "ground.tsx",
     "expandedProjectPaths": [
         "."
     ],
@@ -13,20 +13,20 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 487.05547652916084,
-                "y": 304.6535257061574
+                "y": 411.62365372891696
             }
         },
         "world.tmx": {
             "scale": 1.5378124999999998,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 487.05547652916084,
-                "y": 304.6535257061574
+                "x": 239.9512294249137,
+                "y": 304.97866287339974
             }
         }
     },
     "last.exportedFilePath": "C:/Neumont/Q4/IntroToGameDev/GameEngine-Intro/Build/Assets/Tilemaps",
-    "last.imagePath": "C:/Users/branderson/Downloads",
+    "last.imagePath": "C:/Neumont/Q4/IntroToGameDev/GameEngine-Intro/Build/Assets/Textures",
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
@@ -39,9 +39,9 @@
     "project": "world.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "ground.tsx",
+        "world.tmj",
         "world.tmx",
-        "world.tmj"
+        "ground.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

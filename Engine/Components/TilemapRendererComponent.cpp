@@ -19,10 +19,30 @@ namespace nu {
 
 	}
 
-	void TilemapRendererComponent::Draw(const Renderer& renderer)
-	{
+    void TilemapRendererComponent::Draw(const Renderer& renderer)
+    {
+        if (!m_tilemap)
+            return;
 
-	}
+        for (const auto& layer : m_tilemap->GetLayers()) {
+            if (!layer.texture) {
+                continue;
+            }
+
+            for (int i = 0; i < (int)layer.data.size(); i++) {
+                int tileId = layer.data[i];
+
+                if (tileId == 0) {
+                    continue;
+                }
+
+                Rect source = m_tilemap->GetTileRect(layer, tileId);
+                Vector2 position = m_tilemap->GetTilePosition(layer, i);
+
+                renderer.DrawTexture(*layer.texture, source, position.x, position.y, 0.0f, 1.0f, false);
+            }
+        }
+    }
 	void TilemapRendererComponent::Read(const json::value_t& value)
 	{
 		RendererComponent::Read(value);
