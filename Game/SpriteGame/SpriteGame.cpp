@@ -12,12 +12,14 @@ using namespace nu;
 
 bool SpriteGame::Initialize()
 {
+    SetWorkingDirectory("SpriteGame");
+
     if (!Game::Initialize())
     {
         return false;
     }
 
-    m_scene = new Scene();
+    m_scene = make_unique<Scene>();
     m_scene->SetGame(this);
     m_scene->Load("Data/scene.json");
 

@@ -13,12 +13,14 @@ using namespace nu;
 
 bool SpaceGame::Initialize()
 {
+    SetWorkingDirectory("SpaceGame");
+
     if (!Game::Initialize())
     {
         return false;
     }
 
-    m_scene = new Scene();
+    m_scene = make_unique<Scene>();
     m_scene->SetGame(this);
     m_scene->Load("Data/scene.json");
 

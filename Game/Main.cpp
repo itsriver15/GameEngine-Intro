@@ -27,7 +27,7 @@ int main() {
 
     
 
-    unique_ptr<Game> game = make_unique<SpaceGame>();
+    unique_ptr<Game> game = make_unique<SpriteGame>();
     game->Initialize();
 
  
@@ -74,6 +74,8 @@ int main() {
        
     }
     //SHUTDOWN
+
+    game.reset();
 
     Engine::Get().Shutdown();
 
