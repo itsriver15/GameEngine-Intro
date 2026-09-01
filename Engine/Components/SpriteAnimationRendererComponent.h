@@ -1,18 +1,20 @@
 #pragma once
-#include "RendererComponent.h"
+#include "SpriteRendererComponent.h"
 #include "Resources/ResourceManager.h"
 
 namespace nu {
-	class SpriteAnimationRendererComponent : public RendererComponent {
+	class SpriteAnimationRendererComponent : public SpriteRendererComponent {
 	public:
 		CLASS_PROTOTYPE(SpriteAnimationRendererComponent)
 
 	void Update(float dt) override;
-	void Draw(const Renderer& renderer) override;
+	void Start() override;
 
 	void Read(const json::value_t& value) override;
 
 	private:
+		string m_textureFramesName;
+
 		float m_framesPerSecond = 1.0f;
 		bool m_loop = true;
 		

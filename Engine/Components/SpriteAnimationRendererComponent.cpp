@@ -32,41 +32,35 @@ namespace nu {
 
 			m_frameTimer -= frameTime;
 		}
+		m_sourceRect = m_textureFrames->GetFrameRect(m_currentFrame);
 	}
 
-	void SpriteAnimationRendererComponent::Draw(const Renderer& renderer)
+	void SpriteAnimationRendererComponent::Start()
 	{
-		if (!m_textureFrames) {
-			std::cerr << "Texture frames not set!" << std::endl;
-			return;
+		if (!m_textureFramesName.empty()) {
+			m_textureFrames = Resources().Get<TextureFrames>(m_textureFramesName, Engine::Get().GetRenderer());
+
+			if (m_textureFrames) {
+				m_sourceRect = m_textureFrames->GetFrameRect(0);
+				m_size = Vector2{ m_sourceRect.w, m_sourceRect.h };
+				m_texture = m_textureFrames->GetTexture();
+			}
+
+		} else {
+			cerr << "Could not load texture frames: " << m_textureFramesName << endl;
 		}
-
-		auto transform = GetOwner()->GetTransform();
-
-		renderer.DrawTexture(
-			*m_textureFrames->GetTexture(),
-			m_textureFrames->GetFrameRect(m_currentFrame),
-			transform.position.x,
-			transform.position.y,
-			transform.rotation,
-			transform.scale
-		);
 	}
+
 
 	void SpriteAnimationRendererComponent::Read(const json::value_t& value)
 	{
 		RendererComponent::Read(value);
+
 		JSON_READ_NAME_REQ(value, "frames_per_second", m_framesPerSecond);
 		JSON_READ_NAME(value, "loop", m_loop);
+		JSON_READ_NAME_REQ(value, "texture_frames", m_textureFramesName);
 
-		std::string texture_frames;
-		JSON_READ_REQ(value, texture_frames);
 
-		if (texture_frames.empty()) {
-			std::cerr << "Could not load texture frames: " << texture_frames << std::endl;
 
-		} else {
-			m_textureFrames = Resources().Get<TextureFrames>(texture_frames, Engine::Get().GetRenderer());
-		}
 	}
 }

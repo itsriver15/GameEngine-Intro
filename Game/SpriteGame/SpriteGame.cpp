@@ -21,7 +21,7 @@ bool SpriteGame::Initialize()
 
     m_scene = make_unique<Scene>();
     m_scene->SetGame(this);
-    m_scene->Load("Data/scene.json");
+    m_scene->Load("Scenes/scene.json");
 
     m_titleText =
         new Text(

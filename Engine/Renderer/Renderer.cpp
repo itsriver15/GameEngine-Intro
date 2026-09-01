@@ -150,6 +150,8 @@ void nu::Renderer::DrawTexture(const Texture& texture, const Rect& source, float
 	destRect.x = x - (destRect.w * 0.5f);
 	destRect.y = y - (destRect.h * 0.5f);
 
+	SDL_SetTextureScaleMode(texture.m_texture, SDL_SCALEMODE_NEAREST);
+
 
 	// https://wiki.libsdl.org/SDL3/SDL_RenderTexture
 	SDL_RenderTextureRotated(renderer, texture.m_texture, &sourceRect, &destRect, angle, NULL, (fliph) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);

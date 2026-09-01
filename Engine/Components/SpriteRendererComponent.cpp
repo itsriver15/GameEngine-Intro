@@ -11,11 +11,20 @@ namespace nu{
 	void SpriteRendererComponent::Draw(const Renderer& renderer)
 	{
 		if (m_texture) {
-			renderer.DrawTexture(*m_texture,
-				GetOwner()->GetTransform().position.x,
-				GetOwner()->GetTransform().position.y,
-				GetOwner()->GetTransform().rotation,
-				GetOwner()->GetTransform().scale);
+			if (m_sourceRect.w > 0 && m_sourceRect.h > 0) {
+				renderer.DrawTexture(*m_texture, m_sourceRect,
+					GetOwner()->GetTransform().position.x,
+					GetOwner()->GetTransform().position.y,
+					GetOwner()->GetTransform().rotation,
+					GetOwner()->GetTransform().scale, m_fliph);
+			}
+			else {
+				renderer.DrawTexture(*m_texture,
+					GetOwner()->GetTransform().position.x,
+					GetOwner()->GetTransform().position.y,
+					GetOwner()->GetTransform().rotation,
+					GetOwner()->GetTransform().scale, m_fliph);
+			}
 		}
 	}
 
@@ -23,12 +32,20 @@ namespace nu{
 	{
 		RendererComponent::Read(value);
 
-		std::string textureName;
-		JSON_READ_NAME(value, "texture", textureName);
+		JSON_READ_NAME(value, "texture", m_textureName);
+		JSON_READ_NAME(value, "fliph", m_fliph);
 
-		if (!textureName.empty())
-		{
-			m_texture = Resources().Get<Texture>(textureName, Engine::Get().GetRenderer());
+	}
+	void SpriteRendererComponent::Start()
+	{
+		if (!m_textureName.empty()) {
+			m_texture = Resources().Get<Texture>(m_textureName, Engine::Get().GetRenderer());
+
+			if (m_texture) {
+				m_size = m_texture->GetSize();
+			}
+
 		}
+
 	}
 }
