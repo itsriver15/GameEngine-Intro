@@ -30,6 +30,9 @@ namespace nu {
 
 		class Game* GetGame() { return m_game; }
 
+		string GetName() { return m_name; }
+		void SetName(const string& name) { m_name = name; }
+
 
 	private:
 		void UpdateCollisions();
@@ -38,6 +41,7 @@ namespace nu {
 	private:
 		vector<unique_ptr<Actor>> m_actors;
 		vector<unique_ptr<Actor>> m_pendingActors;
+		string m_name;
 
 		class Game* m_game = nullptr;
 	};

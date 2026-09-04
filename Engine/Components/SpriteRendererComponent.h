@@ -28,8 +28,11 @@ namespace nu {
 		res_t<Texture> m_texture;
 		string m_textureName;
 		Rect m_sourceRect;
+		Vector2 m_origin{ 0.5f };
 		Vector2 m_size{ 0.0f };
 		bool m_fliph = false;
+
+
 
 	};
 }

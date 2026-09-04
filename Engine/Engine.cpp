@@ -6,7 +6,7 @@
 namespace nu {
 
 	bool Engine::Initialize() {
-		m_renderer.Initialize(1280, 1024);
+		m_renderer.Initialize(1440, 960);
 		m_particleSystem.Initialize();
 		m_audio.Initialize();
 		m_input.Initialize();

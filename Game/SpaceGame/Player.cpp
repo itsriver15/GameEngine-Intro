@@ -33,10 +33,7 @@ void Player::Update(float dt){
 
         Vector2 position = physicsComponent->GetPosition();
 
-        position.x = Wrap(0.0f, 1280.0f, position.x);
-        position.y = Wrap(0.0f, 1024.0f, position.y);
-
-        physicsComponent->SetPosition(position);
+        Engine::Get().GetRenderer().SetCamera(position);
     }
 
 

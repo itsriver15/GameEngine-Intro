@@ -30,13 +30,15 @@ public:
 			m_score += points;
 		};
 
+		void NextLevel();
+
 	private:
 		void SpawnPlayer();
 		void SpawnEnemy();
 
 	private:
 		int m_score{ 0 };
-		int m_lives{ 0 };
+		float m_health{ 0 };
 
 		float m_stateTimer = 0.0f;
 
@@ -58,5 +60,4 @@ public:
 		//Font* m_gameFont{ nullptr };
 
 		Text* m_scoreText{ nullptr };
-		Text* m_livesText{ nullptr };
 };

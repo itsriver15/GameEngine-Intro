@@ -25,6 +25,11 @@ namespace nu {
 		void SetPaused(bool paused = false) { m_paused = paused; }
 		void Pause() { m_paused = true; }
 
+		unsigned int GetFrame() const { return m_currentFrame; }
+		const string& GetAnimationName()const { return m_currentAnimation.name; }
+
+		bool IsAnimationFinished() const;
+
 
 
 

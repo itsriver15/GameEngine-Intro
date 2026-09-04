@@ -16,14 +16,14 @@ namespace nu{
 					GetOwner()->GetTransform().position.x,
 					GetOwner()->GetTransform().position.y,
 					GetOwner()->GetTransform().rotation,
-					GetOwner()->GetTransform().scale, m_fliph);
+					GetOwner()->GetTransform().scale, m_fliph, m_origin);
 			}
 			else {
 				renderer.DrawTexture(*m_texture,
 					GetOwner()->GetTransform().position.x,
 					GetOwner()->GetTransform().position.y,
 					GetOwner()->GetTransform().rotation,
-					GetOwner()->GetTransform().scale, m_fliph);
+					GetOwner()->GetTransform().scale, m_fliph, m_origin);
 			}
 		}
 	}
@@ -34,6 +34,8 @@ namespace nu{
 
 		JSON_READ_NAME(value, "texture", m_textureName);
 		JSON_READ_NAME(value, "fliph", m_fliph);
+		JSON_READ_NAME(value, "origin", m_origin);
+		
 
 	}
 	void SpriteRendererComponent::Start()

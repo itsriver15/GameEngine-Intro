@@ -95,6 +95,8 @@ namespace nu {
         if (!shapeName.empty())
         {
             if (EqualsIgnoreCase(shapeName, "box")) m_bodyDef.shape = PhysicsBody::Shape::Box;
+            //if "size" x = "size" y, Capsule will ignore gravity and collisions
+
             else if (EqualsIgnoreCase(shapeName, "capsule")) m_bodyDef.shape = PhysicsBody::Shape::Capsule;
             else if (EqualsIgnoreCase(shapeName, "circle")) m_bodyDef.shape = PhysicsBody::Shape::Circle;
         }

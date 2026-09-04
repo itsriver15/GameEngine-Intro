@@ -38,6 +38,7 @@ namespace nu {
         }
 
         for (auto& component : m_components) {
+            if(component->IsActive())
             component->Update(dt);
 
         }
@@ -46,8 +47,8 @@ namespace nu {
         m_transform.position += (m_velocity * dt);
         m_velocity *= (1.0f / ((1.0f) + m_damping * dt));
 
-        m_transform.position.x = Wrap(0.0f, 1280.0f, m_transform.position.x);
-        m_transform.position.y = Wrap(0.0f, 1024.0f, m_transform.position.y);
+        //m_transform.position.x = Wrap(0.0f, 1280.0f, m_transform.position.x);
+        //m_transform.position.y = Wrap(0.0f, 1024.0f, m_transform.position.y);
     }
 
     void Actor::Draw(const Renderer& renderer) const {
@@ -55,13 +56,14 @@ namespace nu {
         for (auto& component : m_components) {
             auto rendererCompenent = dynamic_cast<RendererComponent*>(component.get());
             if (rendererCompenent) {
+                if(rendererCompenent->IsActive())
                 rendererCompenent->Draw(renderer);
             }
 
          }
     }
 
-    void Actor::Start() const
+    void Actor::Start()
     {
         for (auto& component : m_components) {
             component->Start();

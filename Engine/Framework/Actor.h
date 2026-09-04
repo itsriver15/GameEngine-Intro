@@ -46,7 +46,7 @@ namespace nu {
         virtual void Update(float dt);
         virtual void Draw(const Renderer& renderer) const;
 
-        virtual void Start() const;
+        virtual void Start();
         virtual void Destroyed() const;
 
         virtual void OnCollision(Actor* other) {}
@@ -70,7 +70,7 @@ namespace nu {
 
         const std::string& GetName() const { return m_name; }
         const std::string& GetTag() const { return m_tag; };
-        void SetTag(std::string& tag) { m_tag = tag; }
+        void SetTag(const std::string& tag) { m_tag = tag; }
 
         Scene* GetScene() const { return m_scene; }
 

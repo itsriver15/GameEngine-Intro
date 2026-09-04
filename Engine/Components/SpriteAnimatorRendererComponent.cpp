@@ -10,8 +10,7 @@ namespace nu {
 	void SpriteAnimatorRendererComponent::Update(float dt)
 	{
 		if (!m_currentAnimation.textureFrames) { return; }
-		m_frameTimer += dt;
-
+	
 		m_frameTimer += dt;
 		float frameTime = 1.0f / m_currentAnimation.framesPerSecond;
 
@@ -25,8 +24,10 @@ namespace nu {
 				//stop on last frame
 				m_currentFrame = Clamp(0u, m_currentAnimation.textureFrames->GetTotalFrames() - 1, m_currentFrame);
 			}
+			
 
 			m_frameTimer -= frameTime;
+
 		}
 		m_sourceRect = m_currentAnimation.textureFrames->GetFrameRect(m_currentFrame);
 	}
@@ -79,8 +80,16 @@ namespace nu {
 
 	void SpriteAnimatorRendererComponent::Play(const string& name)
 	{
+		if (EqualsIgnoreCase(name, m_currentAnimation.name)) {
+			return;
+		}
+
+
+
 		auto iter = m_spriteAnimations.find(ToLower(name));
-		if (iter == m_spriteAnimations.end()) {
+
+		if (iter == m_spriteAnimations.end())
+		{
 			cerr << "Could not find animation: " << name << endl;
 			return;
 		}
@@ -88,8 +97,20 @@ namespace nu {
 		m_currentAnimation = iter->second;
 		m_currentFrame = 0;
 		m_frameTimer = 0.0f;
-		m_texture = m_currentAnimation.textureFrames->GetTexture();
-		m_sourceRect = m_currentAnimation.textureFrames->GetFrameRect(m_currentFrame);
 
+		m_texture = m_currentAnimation.textureFrames->GetTexture();
+
+		m_sourceRect = m_currentAnimation.textureFrames->GetFrameRect(m_currentFrame);
+	}
+
+	bool SpriteAnimatorRendererComponent::IsAnimationFinished() const
+	{
+		if (!m_currentAnimation.textureFrames)
+			return false;
+
+		if (m_currentAnimation.loop)
+			return false;
+
+		return m_currentFrame >= m_currentAnimation.textureFrames->GetTotalFrames() - 1;
 	}
 }

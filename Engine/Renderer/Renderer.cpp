@@ -8,7 +8,7 @@
 
 using namespace nu;
 
-void Renderer::Initialize(int width, int height)
+bool Renderer::Initialize(int width, int height)
 {
 	SDL_Init(SDL_INIT_VIDEO);
 	m_width = width;
@@ -19,6 +19,7 @@ void Renderer::Initialize(int width, int height)
 	{
 		std::cerr << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
+		return false;
 	}
 
 
@@ -31,14 +32,20 @@ void Renderer::Initialize(int width, int height)
 
 		SDL_DestroyWindow(window);
 		SDL_Quit();
+		return false;
 	}
 
+	SDL_SetDefaultTextureScaleMode(renderer, SDL_SCALEMODE_PIXELART);
 	SDL_SetRenderVSync(renderer, 1);
 
+	
 	if (!TTF_Init()) {
 		std::cerr << "TTF_Init Error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
+		return false;
 	}
+
+	return true;
 
 
 }
@@ -119,24 +126,31 @@ void Renderer::DrawModel (const class Model& model, const struct Transform& tran
 
 }
 
-void Renderer::DrawTexture(const class Texture& texture, float x, float y, float angle, float scale, bool fliph) const
+void Renderer::DrawTexture(const class Texture& texture, float x, float y, float angle, float scale, bool fliph, const Vector2& origin) const
 {
 	Vector2 size = texture.GetSize();
+
+	float cameraX = (m_cameraEnabled) ? (m_camera.x - m_width * origin.x) : 0.0f;
+	float cameraY = (m_cameraEnabled) ? (m_camera.y - m_height * origin.y): 0.0f;
 	
 	SDL_FRect destRect;
 	destRect.w = size.x * scale;
 	destRect.h = size.y * scale;
 
-	destRect.x = x - (destRect.w * 0.5f);
-	destRect.y = y - (destRect.h * 0.5f);
+	destRect.x = (x - cameraX) - (destRect.w * origin.x);
+	destRect.y = (y - cameraY) - (destRect.h * origin.y);
 
 
 	// https://wiki.libsdl.org/SDL3/SDL_RenderTexture
 	SDL_RenderTextureRotated(renderer, texture.m_texture, NULL, &destRect, angle, NULL, (fliph) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }
 
-void nu::Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool fliph) const
+void nu::Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool fliph, const Vector2& origin) const
 {
+
+	float cameraX = (m_cameraEnabled) ? (m_camera.x - m_width * origin.x) : 0.0f;
+	float cameraY = (m_cameraEnabled) ? (m_camera.y - m_height * origin.y) : 0.0f;
+
 	SDL_FRect sourceRect;
 	sourceRect.x = source.x;
 	sourceRect.y = source.y;
@@ -147,10 +161,11 @@ void nu::Renderer::DrawTexture(const Texture& texture, const Rect& source, float
 	destRect.w = source.w * scale;
 	destRect.h = source.h * scale;
 
-	destRect.x = x - (destRect.w * 0.5f);
-	destRect.y = y - (destRect.h * 0.5f);
+	destRect.x = (x - cameraX) - (destRect.w * origin.x);
+	destRect.y = (y - cameraY) - (destRect.h * origin.y);
 
-	SDL_SetTextureScaleMode(texture.m_texture, SDL_SCALEMODE_NEAREST);
+
+	SDL_SetTextureScaleMode(texture.m_texture, SDL_SCALEMODE_PIXELART);
 
 
 	// https://wiki.libsdl.org/SDL3/SDL_RenderTexture

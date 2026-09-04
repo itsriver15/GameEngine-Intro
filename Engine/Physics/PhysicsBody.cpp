@@ -40,7 +40,9 @@ namespace nu
 		case Shape::Box:
 		{
 			b2Polygon box = b2MakeBox(hsize.x, hsize.y);
-			b2CreatePolygonShape(m_bodyId, &shapeDef, &box);
+
+			b2ShapeId shapeId =
+				b2CreatePolygonShape(m_bodyId, &shapeDef, &box);
 		}
 		break;
 		case Shape::Capsule:
