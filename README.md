@@ -42,11 +42,11 @@ Add screenshots to a "screenshots" folder in the project.
 
 
 
-!\[Level 1 Gameplay](Screenshots/gameplay-2.png)
+![Level 1 Gameplay](Screenshots/gameplay-2.png)
 
 
 
-!\[Level 2 Gameplay](Screenshots/gameplay-1.png)
+![Level 2 Gameplay](Screenshots/gameplay-1.png)
 
 
 
