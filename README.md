@@ -113,11 +113,23 @@ Add screenshots to a "screenshots" folder in the project.
 
 
 
+##### **Controls:**
+
+\- A/D to move Left/Right
+
+\- Space to Start Game
+
+\- Enter to go back to Title (only if on Win Screen)
+
+\- R to Reset Level
+
+\- E to interact with Portal
+
+\- F to attack
 
 
 
-
-Requirements:
+##### **Requirements:**
 
 
 
@@ -137,7 +149,12 @@ Requirements:
 
 
 
-\##### \*\*Steps to Run:\*\*
+
+
+
+
+
+##### \*\*Steps to Run:\*\*
 
 
 
