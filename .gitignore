@@ -361,3 +361,26 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Allow third-party dependencies to be tracked
+!ThirdParty/
+!ThirdParty/SDL3/
+!ThirdParty/SDL3/**
+
+!ThirdParty/fmod/
+!ThirdParty/fmod/**
+
+!ThirdParty/box2d/
+!ThirdParty/box2d/**
+
+!ThirdParty/rapidjson/
+!ThirdParty/rapidjson/**
+
+# Do not commit generated/build files
+ThirdParty/box2d/build/
+
+# Do not commit FMOD example programs
+ThirdParty/fmod/core/examples/
+
+# Do not commit RapidJSON test/build output
+ThirdParty/rapidjson/bin/
