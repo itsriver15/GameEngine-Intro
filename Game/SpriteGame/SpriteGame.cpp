@@ -136,6 +136,7 @@ void SpriteGame::Draw(Renderer& renderer)
         m_titleText->Draw(renderer, 480.0f, 400.0f);
         break;
 
+
     case GameState::StartGame:
 
         break;
