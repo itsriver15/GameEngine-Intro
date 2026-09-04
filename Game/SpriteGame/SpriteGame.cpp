@@ -34,7 +34,7 @@ bool SpriteGame::Initialize()
 
     m_titleText->Create(
         Engine::Get().GetRenderer(),
-        "Shoot Em Space",
+        "Wiz v. Pyro",
         Color{ 1.0f, 1.0f, 1.0f });
 
     m_gameOverText =
@@ -133,7 +133,7 @@ void SpriteGame::Draw(Renderer& renderer)
     switch (m_gameState)
     {
     case GameState::Title:
-        m_titleText->Draw(renderer, 400.0f, 400.0f);
+        m_titleText->Draw(renderer, 480.0f, 400.0f);
         break;
 
     case GameState::StartGame:
