@@ -104,6 +104,7 @@ void SpriteGame::Update(float dt)
         if (Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_RETURN))
         {
             Engine::Get().GetAudio().PlaySound("startgame");
+            m_scene->SetName("level1");
             m_gameState = GameState::Title;
         }
         break;
