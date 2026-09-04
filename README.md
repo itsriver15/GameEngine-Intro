@@ -164,6 +164,9 @@ Requirements:
 
 
 
+3\\. THIS IS VERY IMPORTANT: Go into Game Properties; Debugging; and set the Working Directory to $(SolutionDir)Build (I am unaware of why it doesn't have that configured for you already, I'm very sorry!)
+
+
 
 3\\. Select Debug or Release.
 
