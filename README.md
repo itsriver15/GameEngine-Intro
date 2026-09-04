@@ -1,8 +1,4 @@
-\#### \*\*Wiz v. Pyro\*\*
-
-
-
-
+#### **Wiz v. Pyro**
 
 
 
@@ -10,83 +6,41 @@ Wiz v. Pyro is a 2D platformer demo built using a custom component-based game en
 
 
 
-
-
-
-
 The engine uses SDL3, FMOD, Box2D, and RapidJSON. It includes systems for rendering, audio, input, physics, and serialization.
 
 
 
+##### **Features**
 
 
 
+\- Component-based engine
 
-\##### \*\*Features\*\*
+\- 2D rendering
 
+\- 2D physics using Box2D
 
+\- Player and enemy actors
 
+\- Tilemap-based levels
 
+\- UI and score system
 
+\- Audio using FMOD
 
+\- Input system
 
-\\- Component-based engine
+\- JSON serialization using RapidJSON
 
+\- Player only able to jump if they touched the ground beforehand
 
+\- Portals to take you to next level
 
-\\- 2D rendering
-
-
-
-\\- 2D physics using Box2D
-
-
-
-\\- Player and enemy actors
-
-
-
-\\- Tilemap-based levels
+\- Fun level design and tilemapping
 
 
 
-\\- UI and score system
-
-
-
-\\- Audio using FMOD
-
-
-
-\\- Input system
-
-
-
-\\- JSON serialization using RapidJSON
-
-
-
-\\- Player only able to jump if they touched the ground beforehand
-
-
-
-\\- Portals to take you to next level
-
-
-
-\\- Fun level design and tilemapping
-
-
-
-
-
-
-
-\##### \*\*Screenshots\*\*
-
-
-
-
+##### **Screenshots**
 
 
 
@@ -94,19 +48,11 @@ Add screenshots to a "screenshots" folder in the project.
 
 
 
+![Level 1 Gameplay](Screenshots/gameplay-2.png)
 
 
 
-
-!\[Level 1 Gameplay](Screenshots/gameplay-2.png)
-
-
-
-
-
-
-
-!\[Level 2 Gameplay](Screenshots/gameplay-1.png)
+![Level 2 Gameplay](Screenshots/gameplay-1.png)
 
 
 
@@ -114,167 +60,81 @@ Add screenshots to a "screenshots" folder in the project.
 
 
 
-
-
-
-
-
-
-
-
-\##### \*\*Building and Running\*\*
-
-
-
-
+##### **Building and Running**
 
 
 
 Requirements:
 
+\- Windows
 
+\- Visual Studio 2022
 
-\\- Windows
+\- C++20-compatible compiler
 
 
 
-\\- Visual Studio 2022
+##### **Steps to Run:**
 
 
 
-\\- C++20-compatible compiler
+1\. Clone the repository:
 
+&#x20;  git clone https://github.com/itsriver15/GameEngine-Intro.git
 
 
 
+2\. Open GameEngine-Intro.sln in Visual Studio.
 
 
 
-\##### \*\*Steps to Run:\*\*
+3\. Select Debug or Release.
 
 
 
+4\. Select x64 or Win32.
 
 
 
+5\. Build the solution.
 
-1\\. Clone the repository:
 
 
+6\. Run the Game project.
 
-\&#x20;  git clone https://github.com/itsriver15/GameEngine-Intro.git
 
 
+##### **Known Issues / Limitations**
 
 
 
+* Currently designed for Windows and Visual Studio.
+* No cross-platform support.
+* Requires the included third-party dependencies.
 
 
-2\\. Open GameEngine-Intro.sln in Visual Studio.
 
 
 
+##### **Credits**
 
 
 
+* SDL3 - Windowing and input: https://www.libsdl.org/
+* FMOD - Audio: https://www.fmod.com/
+* Box2D - Physics:  https://box2d.org/
+* RapidJSON - Serialization: https://rapidjson.org/
+* Sprites from Neumont Game Dev
+* Title/GameOver/Win 'Forest' made by SephtisThan: https://www.pixilart.com/sephtisthan
+* Portal sprite by Elthen on itch.io: https://elthen.itch.io/
+* Game developed by itsriver15: https://github.com/itsriver15/
 
-3\\. Select Debug or Release.
 
 
 
-
-
-
-
-4\\. Select x64 or Win32.
-
-
-
-
-
-
-
-5\\. Build the solution.
-
-
-
-
-
-
-
-6\\. Run the Game project.
-
-
-
-
-
-
-
-\##### \*\*Known Issues / Limitations\*\*
-
-
-
-
-
-
-
-\* Currently designed for Windows and Visual Studio.
-
-\* No cross-platform support.
-
-\* Requires the included third-party dependencies.
-
-
-
-
-
-
-
-
-
-
-
-\##### \*\*Credits\*\*
-
-
-
-
-
-
-
-\* SDL3 - Windowing and input: https://www.libsdl.org/
-
-\* FMOD - Audio: https://www.fmod.com/
-
-\* Box2D - Physics:  https://box2d.org/
-
-\* RapidJSON - Serialization: https://rapidjson.org/
-
-\* Sprites from Neumont Game Dev
-
-\* Title/GameOver/Win 'Forest' made by SephtisThan: https://www.pixilart.com/sephtisthan
-
-\* Portal sprite by Elthen on itch.io: https://elthen.itch.io/
-
-\* Game developed by itsriver15: https://github.com/itsriver15/
-
-
-
-
-
-
-
-
-
-\##### \*\*Repository\*\*
-
-
-
-
+##### **Repository**
 
 
 
 https://github.com/itsriver15/GameEngine-Intro
-
-
 
