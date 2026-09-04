@@ -119,7 +119,7 @@ Requirements:
 * Box2D - Physics:  https://box2d.org/
 * RapidJSON - Serialization: https://rapidjson.org/
 * Sprites from Neumont Game Dev
-* Title/GameOver/Win 'Forest' made by SephtisThan: https://www.pixilart.com/sephtisthan
+* Title/GameOver/Win background 'Forest' made by SephtisThan: https://www.pixilart.com/sephtisthan
 * Game developed by itsriver15: https://github.com/itsriver15/
 
 
