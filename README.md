@@ -32,6 +32,12 @@ The engine uses SDL3, FMOD, Box2D, and RapidJSON. It includes systems for render
 
 \- JSON serialization using RapidJSON
 
+\- Player only able to jump if they touched the ground beforehand
+
+\- Portals to take you to next level
+
+\- Fun level design and tilemapping
+
 
 
 ##### **Screenshots**
@@ -120,10 +126,8 @@ Requirements:
 * RapidJSON - Serialization: https://rapidjson.org/
 * Sprites from Neumont Game Dev
 * Title/GameOver/Win 'Forest' made by SephtisThan: https://www.pixilart.com/sephtisthan
+* Portal sprite by Elthen on itch.io: https://elthen.itch.io/
 * Game developed by itsriver15: https://github.com/itsriver15/
-
-
-
 
 
 
